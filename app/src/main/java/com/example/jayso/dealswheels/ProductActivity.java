@@ -1,0 +1,74 @@
+package com.example.jayso.dealswheels;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ProductActivity extends AppCompatActivity {
+
+    RecyclerView recyclerView;
+    ProductAdapter productAdapter;
+    List<Product> products;
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // app icon in action bar clicked; go home
+                Intent intent = new Intent(this, CategoryActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_products);
+
+        //back button
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        products = new ArrayList<>();
+
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view_products);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        //String category_id = getIntent().getStringExtra("category_id");
+
+        // Header
+        getSupportActionBar().setTitle("Category");
+
+        // Product Listing
+        products.add(new Product("1", R.drawable.cereals, "Muesli"));
+        products.add(new Product("2", R.drawable.cereals, "Muesli"));
+        products.add(new Product("3", R.drawable.cereals, "Muesli"));
+        products.add(new Product("4", R.drawable.cereals, "Muesli"));
+        products.add(new Product("5", R.drawable.cereals, "Muesli"));
+        products.add(new Product("6", R.drawable.cereals, "Muesli"));
+        products.add(new Product("7", R.drawable.cereals, "Muesli"));
+
+        products.add(new Product("8", R.drawable.cereals, "Muesli"));
+        products.add(new Product("9", R.drawable.cereals, "Muesli"));
+        products.add(new Product("10", R.drawable.cereals, "Muesli"));
+        products.add(new Product("11", R.drawable.cereals, "Muesli"));
+        products.add(new Product("12", R.drawable.cereals, "Muesli"));
+        products.add(new Product("13", R.drawable.cereals, "Muesli"));
+        products.add(new Product("14", R.drawable.cereals, "Muesli"));
+
+
+        productAdapter = new ProductAdapter(this, products);
+        recyclerView.setAdapter(productAdapter);
+        recyclerView.getAdapter().notifyDataSetChanged();
+    }
+}

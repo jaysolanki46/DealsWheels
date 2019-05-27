@@ -1,16 +1,19 @@
 package com.example.jayso.dealswheels;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoriesActivity extends AppCompatActivity {
+public class CategoryActivity extends AppCompatActivity {
 
     ViewFlipper viewFlipper;
     List<Category> categories;
@@ -51,5 +54,14 @@ public class CategoriesActivity extends AppCompatActivity {
 
         viewFlipper.setInAnimation(this, android.R.anim.slide_in_left);
         viewFlipper.setOutAnimation(this, android.R.anim.slide_out_right);
+    }
+
+    public void getProducts(View view) {
+
+        Intent intent = new Intent(this, ProductActivity.class);
+        TextView category_id = (TextView)view.findViewById(R.id.category_id);
+        System.out.print(category_id.getText());
+        intent.putExtra("category_id", category_id.getText());
+        startActivity(intent);
     }
 }
