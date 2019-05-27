@@ -4,18 +4,29 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.ImageView;
+import android.widget.ViewFlipper;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CategoriesActivity extends AppCompatActivity {
 
+    ViewFlipper viewFlipper;
     List<Category> categories;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categories);
+
+        int images[] = {R.drawable.cereals, R.drawable.chocolates, R.drawable.cosmetics};
+        viewFlipper = findViewById(R.id.view_flipper);
+
+        for(int image: images){
+            flipperImages(image);
+        }
+
 
         categories = new ArrayList<>();
         categories.add(new Category("1", "Fruits", R.drawable.fruits));
@@ -27,7 +38,18 @@ public class CategoriesActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         CategoryAdapter categoryAdapter = new CategoryAdapter(this, categories);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         recyclerView.setAdapter(categoryAdapter);
+    }
+
+    public void flipperImages(int image) {
+        ImageView imageView = new ImageView(this);
+        imageView.setBackgroundResource(image);
+        viewFlipper.addView(imageView);
+        viewFlipper.setFlipInterval(4000);
+        viewFlipper.setAutoStart(true);
+
+        viewFlipper.setInAnimation(this, android.R.anim.slide_in_left);
+        viewFlipper.setOutAnimation(this, android.R.anim.slide_out_right);
     }
 }
