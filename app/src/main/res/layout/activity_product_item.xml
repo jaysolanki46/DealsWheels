@@ -11,7 +11,7 @@
         android:id="@+id/card_list"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:onClick="getCardItem"
+        android:onClick="getProductDetail"
         app:cardCornerRadius="7dp"
         android:foreground="?android:attr/selectableItemBackground">
 

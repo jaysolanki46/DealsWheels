@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,5 +72,13 @@ public class ProductActivity extends AppCompatActivity {
         productAdapter = new ProductAdapter(this, products);
         recyclerView.setAdapter(productAdapter);
         recyclerView.getAdapter().notifyDataSetChanged();
+    }
+
+    public void getProductDetail(View view) {
+
+        Intent intent = new Intent(this, ProductDetailActivity.class);
+//        TextView category_id = (TextView)view.findViewById(R.id.category_id);
+//        intent.putExtra("category_id", category_id.getText());
+        startActivity(intent);
     }
 }
