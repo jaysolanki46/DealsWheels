@@ -16,14 +16,27 @@
 
     <TextView
         android:id="@+id/HeaderText"
-        android:layout_weight=".2"
+        android:layout_weight=".1"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_gravity="center"
-        android:text="Deals &amp; Wheels"
+        android:text="Shop n' Save"
         android:textSize="40sp"
         android:textStyle="bold|normal"
         android:textColor="@color/colorPrimaryDark"
+        android:fontFamily="Arial"
+        />
+
+    <TextView
+        android:id="@+id/LineText"
+        android:layout_weight=".1"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:text="Save when you shop"
+        android:textSize="20sp"
+        android:textStyle="normal"
+        android:textColor="	#344650"
         android:fontFamily="Arial"
         />
 

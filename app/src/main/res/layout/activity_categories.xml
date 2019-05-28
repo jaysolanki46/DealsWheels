@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorPrimaryDark">
+    android:background="#EEF2F5">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,6 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_margin="14dp"
+            android:background="@drawable/corner_radius"
             android:layout_centerHorizontal="true"/>
 
     </LinearLayout>

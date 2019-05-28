@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/colorPrimaryDark"
+    android:background="#EEF2F5"
     android:orientation="vertical"
     android:padding="16dp">
 
@@ -18,17 +18,18 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#fff"
             android:elevation="4dp"
+            android:background="#3E4B5B"
             android:padding="16dp">
 
             <ImageView
                 android:id="@+id/product_image"
                 android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_height="match_parent"
                 android:layout_alignParentTop="true"
                 android:layout_marginRight="18dp"
-                android:scaleType="centerCrop" />
+                android:scaleType="centerCrop"
+                android:background="@drawable/corner_radius"/>
 
             <TextView
                 android:id="@+id/product_id"
@@ -44,7 +45,7 @@
                 android:textAlignment="center"
                 android:text="Product"
                 android:textSize="24sp"
-                android:textColor="#000"
+                android:textColor="#ffffff"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true" />
 
@@ -56,7 +57,7 @@
                 android:textAlignment="center"
                 android:text="No. store"
                 android:textSize="16sp"
-                android:textColor="#000"
+                android:textColor="#ffffff"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"/>
 

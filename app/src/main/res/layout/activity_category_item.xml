@@ -4,7 +4,7 @@
     android:layout_height="190dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="15dp"
-    android:background="@color/colorPrimaryDark"
+    android:background="#EEF2F5"
     app:cardCornerRadius="5dp"
     android:onClick="getProducts">
 
@@ -17,8 +17,7 @@
             android:id="@+id/category_image"
             android:layout_width="match_parent"
             android:layout_height="160dp"
-            android:scaleType="centerCrop"
-            android:background="#ffffff"/>
+            android:scaleType="centerCrop"/>
 
         <TextView
             android:id="@+id/category_title"
@@ -27,7 +26,9 @@
             android:textSize="15sp"
             android:gravity="center"
             android:text="Category Name"
-            android:textColor="@color/colorPrimaryDark"/>
+            android:background="#3E4B5B"
+            android:textStyle="bold"
+            android:textColor="#ffffff"/>
 
         <TextView
             android:id="@+id/category_id"

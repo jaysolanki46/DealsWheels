@@ -23,7 +23,7 @@ public class CategoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categories);
 
-        int images[] = {R.drawable.cereals, R.drawable.chocolates, R.drawable.cosmetics};
+        int images[] = {R.drawable.paknsave, R.drawable.coundown, R.drawable.newworld};
         viewFlipper = findViewById(R.id.view_flipper);
 
         for(int image: images){
