@@ -1,4 +1,4 @@
-package com.example.jayso.dealswheels;
+package com.example.jayso.shopnsave;
 
 public class Category {
 

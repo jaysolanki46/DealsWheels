@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.example.jayso.dealswheels"
+        applicationId "com.example.jayso.shopnsave"
         minSdkVersion 23
         targetSdkVersion 28
         versionCode 1

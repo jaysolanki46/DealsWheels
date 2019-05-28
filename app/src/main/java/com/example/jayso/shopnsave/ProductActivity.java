@@ -1,4 +1,4 @@
-package com.example.jayso.dealswheels;
+package com.example.jayso.shopnsave;
 
 import android.app.ActivityOptions;
 import android.content.Intent;

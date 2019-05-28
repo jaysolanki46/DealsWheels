@@ -1,4 +1,4 @@
-package com.example.jayso.dealswheels;
+package com.example.jayso.shopnsave;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
