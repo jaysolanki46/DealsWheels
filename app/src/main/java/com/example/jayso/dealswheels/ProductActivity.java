@@ -1,12 +1,15 @@
 package com.example.jayso.dealswheels;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Pair;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -77,8 +80,16 @@ public class ProductActivity extends AppCompatActivity {
     public void getProductDetail(View view) {
 
         Intent intent = new Intent(this, ProductDetailActivity.class);
-//        TextView category_id = (TextView)view.findViewById(R.id.category_id);
-//        intent.putExtra("category_id", category_id.getText());
-        startActivity(intent);
+        ImageView productImage = (ImageView) findViewById(R.id.product_image);
+        TextView productName = (TextView) findViewById(R.id.product_name);
+
+        Pair[] pairs = new Pair[2];
+        pairs[0] = new Pair<View, String>(productImage, "product_image");
+        pairs[1] = new Pair<View, String>(productName, "product_name");
+
+
+        ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation(this, pairs);
+
+        startActivity(intent, activityOptions.toBundle());
     }
 }

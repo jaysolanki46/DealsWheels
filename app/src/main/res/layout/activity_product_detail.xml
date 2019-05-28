@@ -9,7 +9,6 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:transitionName="transition_item_image"
             android:id="@+id/item_image"
             android:layout_width="match_parent"
             android:layout_height="200dp"
@@ -17,6 +16,7 @@
             android:background="#fff"/>
 
         <ImageButton
+            android:transitionName="product_image"
             android:id="@+id/category_image"
             android:layout_width="150dp"
             android:layout_height="130dp"
@@ -30,7 +30,7 @@
             android:elevation="5dp"
             android:padding="1dp"
             android:scaleType="fitXY"
-            android:src="@mipmap/ic_launcher_round" />
+            android:src="@drawable/cereals" />
 
         <RelativeLayout
             android:id="@+id/profile_layout"
@@ -41,7 +41,7 @@
 
 
             <TextView
-                android:transitionName="transition_item"
+                android:transitionName="product_name"
                 android:id="@+id/item_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
