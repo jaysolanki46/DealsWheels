@@ -43,7 +43,7 @@ public class ProductActivity extends AppCompatActivity {
         //back button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        products = new ArrayList<>();
+
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view_products);
         recyclerView.setHasFixedSize(true);
@@ -55,6 +55,7 @@ public class ProductActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Products");
 
         // Product Listing
+        products = new ArrayList<>();
         products.add(new Product("1", R.drawable.fruits, "strawberry"));
         products.add(new Product("2", R.drawable.fruits, "strawberry"));
         products.add(new Product("3", R.drawable.fruits, "strawberry"));

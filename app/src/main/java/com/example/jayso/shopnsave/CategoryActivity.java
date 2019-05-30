@@ -56,9 +56,9 @@ public class CategoryActivity extends AppCompatActivity {
         viewFlipper.setOutAnimation(this, android.R.anim.slide_out_right);
     }
 
-    public void getProducts(View view) {
+    public void getProductCategories(View view) {
 
-        Intent intent = new Intent(this, ProductActivity.class);
+        Intent intent = new Intent(this, ProductCategoryActivity.class);
         TextView category_id = (TextView)view.findViewById(R.id.category_id);
         System.out.print(category_id.getText());
         intent.putExtra("category_id", category_id.getText());
