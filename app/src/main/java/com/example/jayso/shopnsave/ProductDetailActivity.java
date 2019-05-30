@@ -28,5 +28,8 @@ public class ProductDetailActivity extends AppCompatActivity {
 
         //back button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        // Header
+        getSupportActionBar().setTitle("Product");
     }
 }

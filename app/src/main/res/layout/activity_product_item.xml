@@ -55,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:paddingBottom="5dp"
                 android:textAlignment="center"
-                android:text="No. store"
+                android:text="2 stores"
                 android:textSize="16sp"
                 android:textColor="#ffffff"
                 android:layout_alignParentBottom="true"

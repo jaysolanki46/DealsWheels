@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="190dp"
-                android:text="Selected Product"
+                android:text="Strawberry"
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"
                 android:textColor="@color/colorPrimaryDark"
@@ -66,39 +66,111 @@
             android:layout_marginTop="35dp"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/o1"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="#fff"
-                android:textColor="#000"
-                android:elevation="4dp"
-                android:padding="20dp"
-                android:textSize="16sp"
-                android:text="Other Information" />
-            <TextView
-                android:id="@+id/o2"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="#fff"
-                android:textColor="#000"
-                android:elevation="4dp"
-                android:padding="20dp"
-                android:textSize="16sp"
-                android:text="Other Information" />
-            <TextView
-                android:id="@+id/o3"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="#fff"
-                android:textColor="#000"
-                android:elevation="4dp"
-                android:padding="20dp"
-                android:textSize="16sp"
-                android:text="Other Information" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="#ffff"
+                android:layout_margin="10dp">
+
+                <Button
+                    android:id="@+id/btn_paknsave"
+                    android:layout_width="180dp"
+                    android:layout_height="match_parent"
+                    android:text="Pak n' Save"/>
+
+                <TextView
+                    android:id="@+id/textview_price_paknsave"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="100dp"
+                    android:textSize="16sp"
+                    android:layout_toRightOf="@id/btn_paknsave"
+                    android:text="$10.00"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:text="* Including all tax"
+                    android:textSize="16sp"
+                    android:layout_toEndOf="@+id/btn_paknsave"
+                    android:layout_alignParentBottom="true"
+                    android:layout_below="@id/textview_price_paknsave"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="#ffff"
+                android:layout_margin="10dp">
+
+                <Button
+                    android:id="@+id/btn_coundown"
+                    android:layout_width="180dp"
+                    android:layout_height="match_parent"
+                    android:text="Coundown"/>
+
+                <TextView
+                    android:id="@+id/textview_price_coundown"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="100dp"
+                    android:textSize="16sp"
+                    android:layout_toRightOf="@id/btn_coundown"
+                    android:text="$10.00"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:text="* Including all tax"
+                    android:textSize="16sp"
+                    android:layout_toEndOf="@+id/btn_coundown"
+                    android:layout_alignParentBottom="true"
+                    android:layout_below="@id/textview_price_coundown"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="#ffff"
+                android:layout_margin="10dp">
+
+                <Button
+                    android:id="@+id/btn_newworld"
+                    android:layout_width="180dp"
+                    android:layout_height="match_parent"
+                    android:text="New World"/>
+
+                <TextView
+                    android:id="@+id/textview_price_newworld"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="100dp"
+                    android:textSize="16sp"
+                    android:layout_toRightOf="@id/btn_newworld"
+                    android:text="N/A"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:text="* Including all tax"
+                    android:textSize="16sp"
+                    android:layout_toEndOf="@+id/btn_newworld"
+                    android:layout_alignParentBottom="true"
+                    android:layout_below="@id/textview_price_newworld"/>
+
+            </RelativeLayout>
+
 
         </LinearLayout>
     </RelativeLayout>
