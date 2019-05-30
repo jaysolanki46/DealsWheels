@@ -2,18 +2,20 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EEF2F5">
+    android:background="@drawable/shapebackgroundpage">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp">
 
         <ImageView
             android:id="@+id/item_image"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:scaleType="centerInside"
-            android:background="#fff"/>
+            android:scaleType="centerCrop"
+            android:src="@drawable/fruit"
+            android:background="@drawable/radius" />
 
         <ImageButton
             android:transitionName="product_image"
@@ -30,7 +32,7 @@
             android:elevation="5dp"
             android:padding="1dp"
             android:scaleType="fitXY"
-            android:src="@drawable/cereals" />
+            android:src="@drawable/fruits" />
 
         <RelativeLayout
             android:id="@+id/profile_layout"
@@ -47,10 +49,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="190dp"
-                android:text="Selected Item"
+                android:text="Selected Product"
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"
-                android:textColor="#FFF"
+                android:textColor="@color/colorPrimaryDark"
                 android:textStyle="bold"
                 android:textSize="20sp"
                 />
