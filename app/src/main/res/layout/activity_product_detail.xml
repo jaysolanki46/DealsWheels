@@ -76,7 +76,11 @@
                     android:id="@+id/btn_paknsave"
                     android:layout_width="180dp"
                     android:layout_height="match_parent"
-                    android:text="Pak n' Save"/>
+                    android:text="Pak n' Save"
+                    android:textStyle="bold|normal"
+                    android:textColor="#ffff"
+                    android:background="#3E4B5B"
+                    />
 
                 <TextView
                     android:id="@+id/textview_price_paknsave"
@@ -111,7 +115,10 @@
                     android:id="@+id/btn_coundown"
                     android:layout_width="180dp"
                     android:layout_height="match_parent"
-                    android:text="Coundown"/>
+                    android:text="Coundown"
+                    android:textStyle="bold|normal"
+                    android:textColor="#ffff"
+                    android:background="#3E4B5B"/>
 
                 <TextView
                     android:id="@+id/textview_price_coundown"
@@ -146,7 +153,10 @@
                     android:id="@+id/btn_newworld"
                     android:layout_width="180dp"
                     android:layout_height="match_parent"
-                    android:text="New World"/>
+                    android:text="New World"
+                    android:textStyle="bold|normal"
+                    android:textColor="#ffff"
+                    android:background="#3E4B5B"/>
 
                 <TextView
                     android:id="@+id/textview_price_newworld"

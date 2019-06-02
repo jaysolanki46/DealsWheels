@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Pair;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -92,5 +94,12 @@ public class ProductActivity extends AppCompatActivity {
         ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation(this, pairs);
 
         startActivity(intent, activityOptions.toBundle());
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater =  getMenuInflater();
+        menuInflater.inflate(R.menu.activity_search, menu);
+        return true;
     }
 }

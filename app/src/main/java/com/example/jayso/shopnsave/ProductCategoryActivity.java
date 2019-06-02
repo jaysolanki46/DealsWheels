@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -75,5 +77,12 @@ public class ProductCategoryActivity extends AppCompatActivity {
         TextView product_category_id = (TextView)view.findViewById(R.id.product_category_id);
         intent.putExtra("product_category_id", product_category_id.getText());
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater =  getMenuInflater();
+        menuInflater.inflate(R.menu.activity_search, menu);
+        return true;
     }
 }
