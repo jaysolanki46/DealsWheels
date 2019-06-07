@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#EEF2F5"
     android:orientation="vertical"
     android:padding="16dp">
 
@@ -11,14 +10,12 @@
         android:id="@+id/card_list_product_category"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:onClick="getProducts"
-        app:cardCornerRadius="7dp">
+        android:onClick="getProducts">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:elevation="4dp"
-            android:background="#3E4B5B">
+            android:elevation="4dp">
 
             <TextView
                 android:id="@+id/product_category_id"
@@ -32,17 +29,26 @@
                 android:layout_height="wrap_content"
                 android:text="Fruit"
                 android:textSize="24sp"
-                android:textColor="#ffffff"
+                android:textColor="@color/colorPrimary"
                 android:layout_marginLeft="10dp"
                 android:layout_centerVertical="true"/>
 
             <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/product_category_name"
-            android:layout_centerVertical="true"
-            android:src="@drawable/baseline_keyboard_arrow_right_black_18dp"/>
+                android:id="@+id/icon_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/product_category_name"
+                android:layout_centerVertical="true"
+                android:src="@drawable/baseline_keyboard_arrow_right_black_18dp"/>
 
+            <View
+                android:layout_below="@+id/icon_id"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/colorPrimary"/>
 
         </RelativeLayout>
 

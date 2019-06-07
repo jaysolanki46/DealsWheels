@@ -6,12 +6,15 @@
     android:layout_margin="15dp"
     android:background="@drawable/border"
     app:cardCornerRadius="5dp"
-    android:onClick="getProductCategories">
+    android:onClick="getProductCategories"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#CC000000"
+        >
 
         <ImageView
             android:id="@+id/category_image"
@@ -26,8 +29,7 @@
             android:textSize="15sp"
             android:gravity="center"
             android:text="Category Name"
-            android:background="#3E4B5B"
-            android:textColor="#ffffff"/>
+            android:textColor="@color/colorAccent"/>
 
         <TextView
             android:id="@+id/category_id"

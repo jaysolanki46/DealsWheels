@@ -58,21 +58,21 @@ public class ProductActivity extends AppCompatActivity {
 
         // Product Listing
         products = new ArrayList<>();
-        products.add(new Product("1", R.drawable.fruits, "strawberry"));
-        products.add(new Product("2", R.drawable.fruits, "strawberry"));
-        products.add(new Product("3", R.drawable.fruits, "strawberry"));
-        products.add(new Product("4", R.drawable.fruits, "strawberry"));
-        products.add(new Product("5", R.drawable.fruits, "strawberry"));
-        products.add(new Product("6", R.drawable.fruits, "strawberry"));
-        products.add(new Product("7", R.drawable.fruits, "strawberry"));
+        products.add(new Product("1", R.drawable.fruits, "Strawberry"));
+        products.add(new Product("2", R.drawable.fruits, "Strawberry"));
+        products.add(new Product("3", R.drawable.fruits, "Strawberry"));
+        products.add(new Product("4", R.drawable.fruits, "Strawberry"));
+        products.add(new Product("5", R.drawable.fruits, "Strawberry"));
+        products.add(new Product("6", R.drawable.fruits, "Strawberry"));
+        products.add(new Product("7", R.drawable.fruits, "Strawberry"));
 
-        products.add(new Product("8", R.drawable.fruits, "strawberry"));
-        products.add(new Product("9", R.drawable.fruits, "strawberry"));
-        products.add(new Product("10", R.drawable.fruits, "strawberry"));
-        products.add(new Product("11", R.drawable.fruits, "strawberry"));
-        products.add(new Product("12", R.drawable.fruits, "strawberry"));
-        products.add(new Product("13", R.drawable.fruits, "strawberry"));
-        products.add(new Product("14", R.drawable.fruits, "strawberry"));
+        products.add(new Product("8", R.drawable.fruits, "Strawberry"));
+        products.add(new Product("9", R.drawable.fruits, "Strawberry"));
+        products.add(new Product("10", R.drawable.fruits, "Strawberry"));
+        products.add(new Product("11", R.drawable.fruits, "Strawberry"));
+        products.add(new Product("12", R.drawable.fruits, "Strawberry"));
+        products.add(new Product("13", R.drawable.fruits, "Strawberry"));
+        products.add(new Product("14", R.drawable.fruits, "Strawberry"));
 
 
         productAdapter = new ProductAdapter(this, products);

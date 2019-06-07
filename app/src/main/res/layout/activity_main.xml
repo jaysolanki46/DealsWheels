@@ -22,9 +22,7 @@
         android:layout_gravity="center"
         android:text="Shop n' Save"
         android:textSize="40sp"
-        android:textStyle="bold|normal"
-        android:textColor="@color/colorPrimaryDark"
-        android:fontFamily="Arial"
+        android:textColor="@color/colorPrimary"
         />
 
     <TextView
@@ -35,9 +33,7 @@
         android:layout_gravity="center"
         android:text="Save when you shop"
         android:textSize="20sp"
-        android:textStyle="normal"
-        android:textColor="	#344650"
-        android:fontFamily="Arial"
+        android:textColor="@color/colorPrimary"
         />
 
 </LinearLayout>
