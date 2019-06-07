@@ -3,6 +3,7 @@ package com.example.jayso.shopnsave;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
@@ -67,6 +68,7 @@ public class ProductCategoryActivity extends AppCompatActivity {
 
 
         productCategoryAdapter = new ProductCategoryAdapter(this, productCategories);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
         recyclerView.setAdapter(productCategoryAdapter);
         recyclerView.getAdapter().notifyDataSetChanged();
     }

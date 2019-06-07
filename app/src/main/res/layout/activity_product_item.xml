@@ -9,15 +9,15 @@
     <android.support.v7.widget.CardView
         android:id="@+id/card_list"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="120dp"
         android:onClick="getProductDetail"
-        app:cardCornerRadius="7dp"
+        app:cardCornerRadius="10dp"
         android:foreground="?android:attr/selectableItemBackground">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#CC000000"
+            android:background="@color/colorcard1"
             android:paddingLeft="0dp">
 
             <ImageView
@@ -36,25 +36,17 @@
 
             <TextView
                 android:id="@+id/product_name"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
                 android:paddingBottom="5dp"
                 android:textAlignment="center"
                 android:text="Product"
                 android:textSize="24sp"
                 android:textColor="@color/colorAccent"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@id/product_image"/>
+                android:layout_toRightOf="@id/product_image"
+                android:layout_marginTop="20dp"/>
 
-            <View
-                android:id="@+id/view_id"
-                android:layout_width="3dp"
-                android:layout_height="match_parent"
-                android:layout_marginTop="0dp"
-                android:layout_toRightOf="@id/product_name"
-                android:layout_marginLeft="3dp"
-                android:layout_marginRight="10dp"
-                android:background="@color/colorAccent"/>
+
 
             <TextView
                 android:id="@+id/id_max"
@@ -62,9 +54,10 @@
                 android:layout_height="wrap_content"
                 android:text="Max : "
                 android:textSize="16sp"
-                android:textColor="@color/colorAccent"
-                android:layout_toRightOf="@+id/view_id"
-                android:layout_marginTop="15dp"/>
+                android:textColor="@color/colorfont"
+                android:layout_below="@+id/product_name"
+                android:layout_toRightOf="@+id/product_image"
+                android:layout_marginLeft="10dp"/>
 
             <TextView
                 android:id="@+id/product_price_max"
@@ -72,20 +65,20 @@
                 android:layout_height="wrap_content"
                 android:text="$10.00"
                 android:textSize="16sp"
-                android:textColor="@color/colorAccent"
-                android:layout_alignParentRight="true"
-                android:layout_toRightOf="@id/id_max"
-                android:layout_marginTop="15dp"/>
+                android:textColor="@color/colorfont"
+                android:layout_below="@+id/product_name"
+                android:layout_toRightOf="@+id/id_max"/>
 
             <TextView
                 android:id="@+id/id_min"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Min  :"
+                android:text="Min : "
                 android:textSize="16sp"
-                android:textColor="@color/colorAccent"
-                android:layout_toRightOf="@+id/view_id"
-                android:layout_below="@id/id_max"/>
+                android:textColor="@color/colorfont"
+                android:layout_below="@+id/id_max"
+                android:layout_toRightOf="@+id/product_image"
+                android:layout_marginLeft="10dp"/>
 
             <TextView
                 android:id="@+id/product_price_min"
@@ -93,10 +86,9 @@
                 android:layout_height="wrap_content"
                 android:text="$08.00"
                 android:textSize="16sp"
-                android:textColor="@color/colorAccent"
-                android:layout_alignParentRight="true"
-                android:layout_toRightOf="@id/id_max"
-                android:layout_below="@+id/product_price_max"/>
+                android:textColor="@color/colorfont"
+                android:layout_below="@+id/product_price_max"
+                android:layout_toRightOf="@+id/id_min"/>
 
             <TextView
                 android:id="@+id/product_store"
@@ -106,9 +98,10 @@
                 android:textAlignment="center"
                 android:text="2 stores"
                 android:textSize="16sp"
-                android:textColor="@color/colorAccent"
-                android:layout_toRightOf="@+id/view_id"
-                android:layout_below="@+id/id_min"/>
+                android:textColor="@color/colorfont"
+                android:layout_below="@+id/product_name"
+                android:layout_toRightOf="@+id/product_price_max"
+                android:layout_marginLeft="50dp"/>
 
 
         </RelativeLayout>

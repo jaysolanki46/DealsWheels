@@ -63,7 +63,7 @@ public class ProductCategoryAdapter extends RecyclerView.Adapter<ProductCategory
     {
         if (position > lastPosition)
         {
-            Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.slide_in_left);
+            Animation animation = AnimationUtils.loadAnimation(context, R.anim.lefttoright);
             viewToAnimate.startAnimation(animation);
             lastPosition = position;
         }

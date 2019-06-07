@@ -2,9 +2,9 @@ package com.example.jayso.shopnsave;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.speech.RecognitionService;
 import android.speech.RecognizerIntent;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,11 +12,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ViewFlipper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +21,6 @@ import java.util.Locale;
 
 public class CategoryActivity extends AppCompatActivity {
 
-    ViewFlipper viewFlipper;
     List<Category> categories;
 
     @Override
@@ -32,13 +28,9 @@ public class CategoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categories);
 
-        int images[] = {R.drawable.paknsave, R.drawable.coundown, R.drawable.newworld};
-        viewFlipper = findViewById(R.id.view_flipper);
-
-        for(int image: images){
-            flipperImages(image);
-        }
-
+        //Header
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.title_shop_n_save);
 
         categories = new ArrayList<>();
         categories.add(new Category("1", "Fruits", R.drawable.fruits));
@@ -50,19 +42,8 @@ public class CategoryActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         CategoryAdapter categoryAdapter = new CategoryAdapter(this, categories);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
         recyclerView.setAdapter(categoryAdapter);
-    }
-
-    public void flipperImages(int image) {
-        ImageView imageView = new ImageView(this);
-        imageView.setBackgroundResource(image);
-        viewFlipper.addView(imageView);
-        viewFlipper.setFlipInterval(4000);
-        viewFlipper.setAutoStart(true);
-
-        viewFlipper.setInAnimation(this, android.R.anim.slide_in_left);
-        viewFlipper.setOutAnimation(this, android.R.anim.slide_out_right);
     }
 
     public void getProductCategories(View view) {
