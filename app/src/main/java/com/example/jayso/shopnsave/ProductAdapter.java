@@ -36,9 +36,47 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ListView
     @Override
     public void onBindViewHolder(@NonNull ListViewHolder listViewHolder, int i) {
         Product product = products.get(i);
-        listViewHolder.productId .setText(product.getProduct_id());
-        listViewHolder.productName.setText(product.getProduct_name());
-        listViewHolder.productImage.setBackgroundResource(product.getProduct_image());
+        listViewHolder.product_id .setText(product.getProduct_id());
+        listViewHolder.product_name.setText(product.getProduct_name());
+        listViewHolder.product_image.setBackgroundResource(product.getProduct_image());
+
+        // Max price
+        if(product.getProduct_pak_n_save_price() > product.getProduct_coundown_price()
+                && product.getProduct_pak_n_save_price() > product.getProduct_new_world_price()) {
+
+            listViewHolder.product_max_price.setText(
+                    String.valueOf(product.getProduct_pak_n_save_price()));
+
+        } else if(product.getProduct_coundown_price() > product.getProduct_pak_n_save_price()
+                && product.getProduct_coundown_price() > product.getProduct_new_world_price()) {
+
+            listViewHolder.product_max_price.setText(
+                    String.valueOf(product.getProduct_coundown_price()));
+        } else {
+
+            listViewHolder.product_max_price.setText(
+                    String.valueOf(product.getProduct_new_world_price()));
+        }
+
+        // Min price
+        if(product.getProduct_pak_n_save_price() < product.getProduct_coundown_price()
+                && product.getProduct_pak_n_save_price() < product.getProduct_new_world_price()) {
+
+            listViewHolder.product_min_price.setText(
+                    String.valueOf(product.getProduct_pak_n_save_price()));
+
+        } else if(product.getProduct_coundown_price() < product.getProduct_pak_n_save_price()
+                && product.getProduct_coundown_price() < product.getProduct_new_world_price()) {
+
+            listViewHolder.product_min_price.setText(
+                    String.valueOf(product.getProduct_coundown_price()));
+        } else {
+
+            listViewHolder.product_min_price.setText(
+                    String.valueOf(product.getProduct_new_world_price()));
+        }
+
+        listViewHolder.product_store_count.setText(product.getProduct_store_count() + " Stores");
         setAnimation(listViewHolder.itemView, i);
     }
 
@@ -49,16 +87,22 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ListView
 
     class ListViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView productImage;
-        TextView productId;
-        TextView productName;
+        TextView product_id;
+        TextView product_name;
+        ImageView product_image;
+        TextView product_max_price;
+        TextView product_min_price;
+        TextView product_store_count;
 
         public ListViewHolder(@NonNull View itemView) {
 
             super(itemView);
-            productImage = itemView.findViewById(R.id.product_image);
-            productId = itemView.findViewById(R.id.product_id);
-            productName = itemView.findViewById(R.id.product_name);
+            product_id = itemView.findViewById(R.id.product_id);
+            product_name = itemView.findViewById(R.id.product_name);
+            product_image = itemView.findViewById(R.id.product_image);
+            product_max_price = itemView.findViewById(R.id.product_price_max);
+            product_min_price = itemView.findViewById(R.id.product_price_min);
+            product_store_count = itemView.findViewById(R.id.product_store_counter);
         }
     }
 

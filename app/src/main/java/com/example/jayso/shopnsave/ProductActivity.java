@@ -14,6 +14,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +32,7 @@ public class ProductActivity extends AppCompatActivity {
             case android.R.id.home:
                 // app icon in action bar clicked; go home
                 Intent intent = new Intent(this, ProductCategoryActivity.class);
+                intent.putExtra("cat_id", getIntent().getStringExtra("cat_id"));
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 return true;
@@ -45,35 +49,42 @@ public class ProductActivity extends AppCompatActivity {
         //back button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
+        // Header
+        getSupportActionBar().setTitle("Products");
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view_products);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        //String category_id = getIntent().getStringExtra("category_id");
-
-        // Header
-        getSupportActionBar().setTitle("Products");
-
-        // Product Listing
+        // Start Database operations
+        ConnectionClass conn = new ConnectionClass();
+        Statement stmt = conn.getConnection();
+        ResultSet result = null;
         products = new ArrayList<>();
-        products.add(new Product("1", R.drawable.fruits, "Strawberry"));
-        products.add(new Product("2", R.drawable.fruits, "Strawberry"));
-        products.add(new Product("3", R.drawable.fruits, "Strawberry"));
-        products.add(new Product("4", R.drawable.fruits, "Strawberry"));
-        products.add(new Product("5", R.drawable.fruits, "Strawberry"));
-        products.add(new Product("6", R.drawable.fruits, "Strawberry"));
-        products.add(new Product("7", R.drawable.fruits, "Strawberry"));
+        String prod_cat_id = getIntent().getStringExtra("prod_cat_id");
 
-        products.add(new Product("8", R.drawable.fruits, "Strawberry"));
-        products.add(new Product("9", R.drawable.fruits, "Strawberry"));
-        products.add(new Product("10", R.drawable.fruits, "Strawberry"));
-        products.add(new Product("11", R.drawable.fruits, "Strawberry"));
-        products.add(new Product("12", R.drawable.fruits, "Strawberry"));
-        products.add(new Product("13", R.drawable.fruits, "Strawberry"));
-        products.add(new Product("14", R.drawable.fruits, "Strawberry"));
-
+        try {
+            result = stmt.executeQuery(
+                    "select prod.*, price.* from Products prod LEFT JOIN Product_prices price ON prod.prod_id = price.prod_id where prod.prod_cat_id ="+ prod_cat_id +"");
+            while(result.next()){
+                int image = getResources().getIdentifier( result.getString("prod_image"), "drawable", getPackageName());
+                products.
+                        add(new Product(
+                                result.getString("prod_id"),
+                                result.getString("cat_id"),
+                                result.getString("prod_cat_id"),
+                                result.getString("prod_name"),
+                                result.getString("prod_store_counter"),
+                                image,
+                                Float.valueOf(result.getString("pak_n_save_price")),
+                                Float.valueOf(result.getString("coundown_price")),
+                                Float.valueOf(result.getString("new_world_price"))));
+            }
+            conn.connectionClose();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        // End Database operations
 
         productAdapter = new ProductAdapter(this, products);
         recyclerView.setAdapter(productAdapter);
@@ -83,6 +94,11 @@ public class ProductActivity extends AppCompatActivity {
     public void getProductDetail(View view) {
 
         Intent intent = new Intent(this, ProductDetailActivity.class);
+        intent.putExtra("prod_cat_id", getIntent().getStringExtra("prod_cat_id"));
+
+        TextView product_id = (TextView)view.findViewById(R.id.product_id);
+        intent.putExtra("prod_id", product_id.getText());
+
         ImageView productImage = (ImageView) findViewById(R.id.product_image);
         TextView productName = (TextView) findViewById(R.id.product_name);
 

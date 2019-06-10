@@ -2,18 +2,21 @@ package com.example.jayso.shopnsave;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.speech.RecognizerIntent;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.sql.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,13 +35,21 @@ public class CategoryActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.title_shop_n_save);
 
+        // Start Database operations
+        ConnectionClass conn = new ConnectionClass();
+        Statement stmt = conn.getConnection();
+        ResultSet result = null;
         categories = new ArrayList<>();
-        categories.add(new Category("1", "Fruits", R.drawable.fruits));
-        categories.add(new Category("2", "Meats", R.drawable.meats));
-        categories.add(new Category("3", "Cosmetic", R.drawable.cosmetics));
-        categories.add(new Category("4", "Cereals", R.drawable.cereals));
-        categories.add(new Category("5", "Rice", R.drawable.rice));
-        categories.add(new Category("6", "Chocolates", R.drawable.chocolates));
+        try {
+            result = stmt.executeQuery("select * from Categories");
+            while(result.next()){
+                categories.add(new Category(result.getString("cat_id"), result.getString("cat_name"), 0));
+            }
+            conn.connectionClose();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        // End Database operations
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         CategoryAdapter categoryAdapter = new CategoryAdapter(this, categories);
@@ -47,11 +58,9 @@ public class CategoryActivity extends AppCompatActivity {
     }
 
     public void getProductCategories(View view) {
-
         Intent intent = new Intent(this, ProductCategoryActivity.class);
         TextView category_id = (TextView)view.findViewById(R.id.category_id);
-        System.out.print(category_id.getText());
-        intent.putExtra("category_id", category_id.getText());
+        intent.putExtra("cat_id", category_id.getText());
         startActivity(intent);
     }
 

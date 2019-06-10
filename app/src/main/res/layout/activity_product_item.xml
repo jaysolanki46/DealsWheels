@@ -91,7 +91,7 @@
                 android:layout_toRightOf="@+id/id_min"/>
 
             <TextView
-                android:id="@+id/product_store"
+                android:id="@+id/product_store_counter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingBottom="5dp"

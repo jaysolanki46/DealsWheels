@@ -12,6 +12,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,29 +46,34 @@ public class ProductCategoryActivity extends AppCompatActivity {
         //back button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        // Header
+        getSupportActionBar().setTitle("Product Category");
+
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view_product_categories);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        //String category_id = getIntent().getStringExtra("category_id");
-
-        // Header
-        getSupportActionBar().setTitle("Product Category");
-
-        // Database values
+        // Start Database operations
+        ConnectionClass conn = new ConnectionClass();
+        Statement stmt = conn.getConnection();
+        ResultSet result = null;
         productCategories = new ArrayList<>();
-        productCategories.add(new ProductCategory("1", "1", "Fruit 1"));
-        productCategories.add(new ProductCategory("2", "1", "Fruit 2"));
-        productCategories.add(new ProductCategory("3", "1", "Fruit 3"));
-        productCategories.add(new ProductCategory("4", "1", "Fruit 4"));
-        productCategories.add(new ProductCategory("6", "1", "Fruit 5"));
-        productCategories.add(new ProductCategory("7", "1", "Fruit 6"));
-        productCategories.add(new ProductCategory("8", "1", "Fruit 7"));
-        productCategories.add(new ProductCategory("9", "1", "Fruit 8"));
-        productCategories.add(new ProductCategory("10", "1", "Fruit 9"));
-        productCategories.add(new ProductCategory("11", "1", "Fruit 10"));
-        productCategories.add(new ProductCategory("12", "1", "Fruit 11"));
+        String cat_id = getIntent().getStringExtra("cat_id");
 
+        try {
+            result = stmt.executeQuery("select * from Product_categories where cat_id ="+ cat_id +"");
+            while(result.next()){
+                productCategories.
+                        add(new ProductCategory(
+                                result.getString("prod_cat_id"),
+                                result.getString("cat_id"),
+                                result.getString("prod_cat_name")));
+            }
+            conn.connectionClose();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        // End Database operations
 
         productCategoryAdapter = new ProductCategoryAdapter(this, productCategories);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
@@ -77,7 +85,8 @@ public class ProductCategoryActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, ProductActivity.class);
         TextView product_category_id = (TextView)view.findViewById(R.id.product_category_id);
-        intent.putExtra("product_category_id", product_category_id.getText());
+        intent.putExtra("cat_id", getIntent().getStringExtra("cat_id"));
+        intent.putExtra("prod_cat_id", product_category_id.getText());
         startActivity(intent);
     }
 
