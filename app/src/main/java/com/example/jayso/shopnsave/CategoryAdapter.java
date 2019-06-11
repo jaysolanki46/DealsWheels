@@ -39,7 +39,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
 
         myViewHolder.category_id.setText(categories.get(i).getCategory_id());
         myViewHolder.category_title.setText(categories.get(i).getCategory_title());
-        //myViewHolder.category_image.setImageResource(categories.get(i).getCategory_image());
+        myViewHolder.category_image.setImageResource(categories.get(i).getCategory_image());
         setAnimation(myViewHolder.itemView, i);
     }
 
@@ -58,7 +58,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
             super(itemView);
 
             category_id = (TextView) itemView.findViewById(R.id.category_id);
-            //category_image = (ImageView) itemView.findViewById(R.id.category_image);
+            category_image = (ImageView) itemView.findViewById(R.id.category_icon);
             category_title = (TextView) itemView.findViewById(R.id.category_title);
         }
     }

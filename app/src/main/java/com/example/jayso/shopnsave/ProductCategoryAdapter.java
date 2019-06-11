@@ -38,6 +38,7 @@ public class ProductCategoryAdapter extends RecyclerView.Adapter<ProductCategory
         ProductCategory productCategory = productCategories.get(i);
         listViewHolder.productCategoryId.setText(productCategory.getProd_cat_id());
         listViewHolder.productCategoryName.setText(productCategory.getProd_cat_name());
+        listViewHolder.productCategoryImage.setBackgroundResource(productCategory.getProd_cat_image());
         setAnimation(listViewHolder.itemView, i);
     }
 
@@ -50,12 +51,14 @@ public class ProductCategoryAdapter extends RecyclerView.Adapter<ProductCategory
 
         TextView productCategoryId;
         TextView productCategoryName;
+        ImageView productCategoryImage;
 
         public ListViewHolder(@NonNull View itemView) {
 
             super(itemView);
             productCategoryId = itemView.findViewById(R.id.product_category_id);
             productCategoryName = itemView.findViewById(R.id.product_category_name);
+            productCategoryImage = itemView.findViewById(R.id.product_category_icon);
         }
     }
 

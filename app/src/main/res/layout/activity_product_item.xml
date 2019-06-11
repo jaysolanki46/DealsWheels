@@ -17,7 +17,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorcard1"
+            android:background="@color/colorcard"
             android:paddingLeft="0dp">
 
             <ImageView

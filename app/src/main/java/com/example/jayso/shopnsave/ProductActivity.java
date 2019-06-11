@@ -3,9 +3,12 @@ package com.example.jayso.shopnsave;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -41,6 +44,73 @@ public class ProductActivity extends AppCompatActivity {
         }
     }
 
+    public List<Product> getProducts(String product_name) {
+
+        ConnectionClass conn = new ConnectionClass();
+        Statement stmt = conn.getConnection();
+        ResultSet result = null;
+        products = new ArrayList<>();
+        String prod_cat_id = getIntent().getStringExtra("prod_cat_id");
+
+        try {
+            if(product_name == "all") {
+                result = stmt.executeQuery(
+                        "select prod.*, price.* from Products prod LEFT JOIN Product_prices price ON prod.prod_id = price.prod_id where prod.prod_cat_id ="+ prod_cat_id +"");
+            } else {
+                result = stmt.executeQuery(
+                        "select prod.*, price.* from Products prod LEFT JOIN Product_prices price ON prod.prod_id = price.prod_id where prod.prod_cat_id ="+ prod_cat_id +" and prod.prod_name LIKE '"+ product_name +"%'");
+            }
+
+            while(result.next()){
+                int image = getResources().getIdentifier( result.getString("prod_image"), "drawable", getPackageName());
+                Float price_paknsave = 0.0f;
+                Float price_coundown = 0.0f;
+                Float price_newworld = 0.0f;
+
+                String result_price_paknsave = result.getString("pak_n_save_price");
+                String result_price_coundown = result.getString("coundown_price");
+                String result_price_newworld = result.getString("new_world_price");
+
+                if(result_price_paknsave != null) {
+                    price_paknsave = Float.valueOf(result.getString("pak_n_save_price"));
+                }
+
+                if(result_price_coundown != null) {
+                    price_coundown = Float.valueOf(result.getString("coundown_price"));
+                }
+
+                if(result_price_newworld != null) {
+                    price_newworld = Float.valueOf(result.getString("new_world_price"));
+                }
+
+                products.
+                        add(new Product(
+                                result.getString("prod_id"),
+                                result.getString("cat_id"),
+                                result.getString("prod_cat_id"),
+                                result.getString("prod_name"),
+                                result.getString("prod_store_counter"),
+                                image,
+                                price_paknsave,
+                                price_coundown,
+                                price_newworld));
+            }
+            conn.connectionClose();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return products;
+    }
+
+    public void search(String product_name) {
+
+        products = getProducts(product_name);
+
+        productAdapter = new ProductAdapter(this, products);
+        recyclerView.setAdapter(productAdapter);
+        recyclerView.getAdapter().notifyDataSetChanged();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,35 +126,7 @@ public class ProductActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // Start Database operations
-        ConnectionClass conn = new ConnectionClass();
-        Statement stmt = conn.getConnection();
-        ResultSet result = null;
-        products = new ArrayList<>();
-        String prod_cat_id = getIntent().getStringExtra("prod_cat_id");
-
-        try {
-            result = stmt.executeQuery(
-                    "select prod.*, price.* from Products prod LEFT JOIN Product_prices price ON prod.prod_id = price.prod_id where prod.prod_cat_id ="+ prod_cat_id +"");
-            while(result.next()){
-                int image = getResources().getIdentifier( result.getString("prod_image"), "drawable", getPackageName());
-                products.
-                        add(new Product(
-                                result.getString("prod_id"),
-                                result.getString("cat_id"),
-                                result.getString("prod_cat_id"),
-                                result.getString("prod_name"),
-                                result.getString("prod_store_counter"),
-                                image,
-                                Float.valueOf(result.getString("pak_n_save_price")),
-                                Float.valueOf(result.getString("coundown_price")),
-                                Float.valueOf(result.getString("new_world_price"))));
-            }
-            conn.connectionClose();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        // End Database operations
+        products = getProducts("all");
 
         productAdapter = new ProductAdapter(this, products);
         recyclerView.setAdapter(productAdapter);
@@ -116,6 +158,24 @@ public class ProductActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater =  getMenuInflater();
         menuInflater.inflate(R.menu.activity_search, menu);
+        MenuItem searchItem = menu.findItem(R.id.search_bar_id);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                search(newText);
+                return true;
+            }
+        });
+
+
         return true;
     }
 }

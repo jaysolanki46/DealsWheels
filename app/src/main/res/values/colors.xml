@@ -8,4 +8,10 @@
     <color name="colorcard1">#18D0B8</color>
     <color name="colorcard2">#FF546C</color>
     <color name="colorcard3">#00DFDE</color>
+    <color name="colorcard4">#2FC5BC</color>
+
+    <color name="headertoolbaar">#003153</color>
+    <color name="colorcard">#003153</color>
+    <color name="colorbackground">#ffff</color>
+
 </resources>

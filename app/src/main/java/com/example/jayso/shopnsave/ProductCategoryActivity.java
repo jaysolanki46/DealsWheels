@@ -2,10 +2,12 @@ package com.example.jayso.shopnsave;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -38,6 +40,47 @@ public class ProductCategoryActivity extends AppCompatActivity {
         }
     }
 
+    public List<ProductCategory> getProductCategories(String product_category_name) {
+
+        ConnectionClass conn = new ConnectionClass();
+        Statement stmt = conn.getConnection();
+        ResultSet result = null;
+        productCategories = new ArrayList<>();
+        String cat_id = getIntent().getStringExtra("cat_id");
+
+        try {
+            if(product_category_name == "all") {
+                result = stmt.executeQuery("select * from Product_categories where cat_id ="+ cat_id +"");
+            } else {
+                result = stmt.executeQuery("select * from Product_categories where cat_id ="+ cat_id +" and prod_cat_name LIKE '"+ product_category_name +"%'");
+            }
+
+            while(result.next()){
+                int image = getResources().getIdentifier( result.getString("prod_cat_image"), "drawable", getPackageName());
+                productCategories.
+                        add(new ProductCategory(
+                                result.getString("prod_cat_id"),
+                                result.getString("cat_id"),
+                                result.getString("prod_cat_name"),
+                                image));
+            }
+            conn.connectionClose();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return productCategories;
+    }
+
+    public void search(String product_category_name) {
+
+        productCategories = getProductCategories(product_category_name);
+
+        productCategoryAdapter = new ProductCategoryAdapter(this, productCategories);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        recyclerView.setAdapter(productCategoryAdapter);
+        recyclerView.getAdapter().notifyDataSetChanged();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,30 +96,10 @@ public class ProductCategoryActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // Start Database operations
-        ConnectionClass conn = new ConnectionClass();
-        Statement stmt = conn.getConnection();
-        ResultSet result = null;
-        productCategories = new ArrayList<>();
-        String cat_id = getIntent().getStringExtra("cat_id");
-
-        try {
-            result = stmt.executeQuery("select * from Product_categories where cat_id ="+ cat_id +"");
-            while(result.next()){
-                productCategories.
-                        add(new ProductCategory(
-                                result.getString("prod_cat_id"),
-                                result.getString("cat_id"),
-                                result.getString("prod_cat_name")));
-            }
-            conn.connectionClose();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        // End Database operations
+        productCategories = getProductCategories("all");
 
         productCategoryAdapter = new ProductCategoryAdapter(this, productCategories);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         recyclerView.setAdapter(productCategoryAdapter);
         recyclerView.getAdapter().notifyDataSetChanged();
     }
@@ -94,6 +117,24 @@ public class ProductCategoryActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater =  getMenuInflater();
         menuInflater.inflate(R.menu.activity_search, menu);
+        MenuItem searchItem = menu.findItem(R.id.search_bar_id);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                search(newText);
+                return true;
+            }
+        });
+
+
         return true;
     }
 }

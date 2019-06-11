@@ -6,6 +6,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 public class ProductDetailActivity extends AppCompatActivity {
 
@@ -34,6 +41,74 @@ public class ProductDetailActivity extends AppCompatActivity {
 
         // Header
         getSupportActionBar().setTitle("Product");
+
+        ImageView imageview_product_image = findViewById(R.id.product_image);
+        TextView textview_product_name = findViewById(R.id.product_name);
+        TextView textview_price_pak_n_save = findViewById(R.id.price_pak_n_save);
+        TextView textview_price_coundown = findViewById(R.id.price_coundown);
+        TextView textview_price_new_world = findViewById(R.id.price_new_world);
+
+        // Start Database operations
+        ConnectionClass conn = new ConnectionClass();
+        Statement stmt = conn.getConnection();
+        ResultSet result = null;
+        String prod_id = getIntent().getStringExtra("prod_id");
+
+        try {
+            result = stmt.executeQuery(
+                    "select prod.*, prodprice.* from Products prod LEFT JOIN Product_prices prodprice ON prod.prod_id = prodprice.prod_id where prod.prod_id = "+ prod_id +"");
+            while(result.next()){
+
+                int image = getResources().getIdentifier( result.getString("prod_image"), "drawable", getPackageName());
+                String name = result.getString("prod_name");
+
+                imageview_product_image.setBackgroundResource(image);
+                textview_product_name.setText(name);
+
+                Float price_paknsave = 0.0f;
+                Float price_coundown = 0.0f;
+                Float price_newworld = 0.0f;
+
+                String result_price_paknsave = result.getString("pak_n_save_price");
+                String result_price_coundown = result.getString("coundown_price");
+                String result_price_newworld = result.getString("new_world_price");
+
+                if(result_price_paknsave != null) {
+                    price_paknsave = Float.valueOf(result.getString("pak_n_save_price"));
+                }
+
+                if(result_price_coundown != null) {
+                    price_coundown = Float.valueOf(result.getString("coundown_price"));
+                }
+
+                if(result_price_newworld != null) {
+                    price_newworld = Float.valueOf(result.getString("new_world_price"));
+                }
+
+
+                if(price_paknsave > 0) {
+                   textview_price_pak_n_save.setText("$ " + price_paknsave.toString());
+                } else {
+                    textview_price_pak_n_save.setText("N/A");
+                }
+
+                if(price_coundown > 0) {
+                    textview_price_coundown.setText("$ " + price_coundown.toString());
+                } else {
+                    textview_price_coundown.setText("N/A");
+                }
+
+                if(price_newworld > 0) {
+                    textview_price_new_world.setText("$ " + price_newworld.toString());
+                } else {
+                    textview_price_new_world.setText("N/A");
+                }
+            }
+            conn.connectionClose();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        // End Database operations
     }
 
     @Override

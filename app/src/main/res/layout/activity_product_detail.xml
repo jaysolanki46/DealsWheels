@@ -12,11 +12,11 @@
         <ImageView
             android:transitionName="product_image"
             android:id="@+id/product_image"
-            android:layout_width="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_width="250dp"
             android:layout_height="200dp"
             android:layout_margin="10dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/fruits" />
+            android:scaleType="centerCrop" />
 
         <RelativeLayout
             android:id="@+id/profile_layout"
@@ -58,39 +58,43 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/colorcard1"
-                    android:paddingLeft="0dp">
+                    android:paddingLeft="5dp">
 
                     <TextView
                         android:id="@+id/txt_pak_n_save"
-                        android:layout_width="250dp"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:text="Pak N Save"
-                        android:textSize="40dp"
+                        android:textSize="20dp"
                         android:textColor="@color/colorfont"
-                        android:layout_centerVertical="true"
                         android:layout_marginLeft="5dp"/>
-
-
-
-                    <TextView
-                        android:id="@+id/price_pak_n_save"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="20sp"
-                        android:text="$10.00"
-                        android:textColor="@color/colorfont"
-                        android:layout_toRightOf="@id/txt_pak_n_save"
-                        android:layout_marginTop="40dp"/>
 
                     <TextView
                         android:id="@+id/txt_tax_pak_n_save"
-                        android:layout_width="wrap_content"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:text="* Including all tax"
                         android:textSize="15sp"
                         android:textColor="@color/colorfont"
+                        android:layout_below="@id/txt_pak_n_save"/>
+
+
+                    <TextView
+                        android:id="@+id/price_pak_n_save"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="50dp"
+                        android:text="$10.00"
+                        android:textColor="@color/colorfont"
+                        android:layout_below="@id/txt_tax_pak_n_save"/>
+
+                    <ImageView
+                        android:layout_width="130dp"
+                        android:layout_height="match_parent"
                         android:layout_toRightOf="@id/txt_pak_n_save"
-                        android:layout_below="@+id/price_pak_n_save"/>
+                        android:layout_marginRight="5dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/icon_price"/>
 
                 </RelativeLayout>
 
@@ -106,40 +110,44 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/colorcard2"
-                    android:paddingLeft="0dp">
+                    android:background="@color/colorcard1"
+                    android:paddingLeft="5dp">
 
                     <TextView
                         android:id="@+id/txt_coundown"
-                        android:layout_width="250dp"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:text="Coundown"
-                        android:textSize="40dp"
+                        android:textSize="20dp"
                         android:textColor="@color/colorfont"
-                        android:layout_centerVertical="true"
                         android:layout_marginLeft="5dp"/>
-
-
-
-                    <TextView
-                        android:id="@+id/price_coundown"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="20sp"
-                        android:text="$10.00"
-                        android:textColor="@color/colorfont"
-                        android:layout_toRightOf="@id/txt_coundown"
-                        android:layout_marginTop="40dp"/>
 
                     <TextView
                         android:id="@+id/txt_tax_coundown"
-                        android:layout_width="wrap_content"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:text="* Including all tax"
                         android:textSize="15sp"
                         android:textColor="@color/colorfont"
+                        android:layout_below="@id/txt_coundown"/>
+
+
+                    <TextView
+                        android:id="@+id/price_coundown"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="50dp"
+                        android:text="$10.00"
+                        android:textColor="@color/colorfont"
+                        android:layout_below="@id/txt_tax_coundown"/>
+
+                    <ImageView
+                        android:layout_width="130dp"
+                        android:layout_height="match_parent"
                         android:layout_toRightOf="@id/txt_coundown"
-                        android:layout_below="@+id/price_coundown"/>
+                        android:layout_marginRight="5dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/icon_price"/>
 
                 </RelativeLayout>
 
@@ -155,40 +163,44 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/colorcard3"
-                    android:paddingLeft="0dp">
+                    android:background="@color/colorcard1"
+                    android:paddingLeft="5dp">
 
                     <TextView
                         android:id="@+id/txt_new_world"
-                        android:layout_width="250dp"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:text="New World"
-                        android:textSize="40dp"
+                        android:textSize="20dp"
                         android:textColor="@color/colorfont"
-                        android:layout_centerVertical="true"
                         android:layout_marginLeft="5dp"/>
-
-
-
-                    <TextView
-                        android:id="@+id/price_new_world"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="20sp"
-                        android:text="$10.00"
-                        android:textColor="@color/colorfont"
-                        android:layout_toRightOf="@id/txt_new_world"
-                        android:layout_marginTop="40dp"/>
 
                     <TextView
                         android:id="@+id/txt_tax_new_world"
-                        android:layout_width="wrap_content"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:text="* Including all tax"
                         android:textSize="15sp"
                         android:textColor="@color/colorfont"
+                        android:layout_below="@id/txt_new_world"/>
+
+
+                    <TextView
+                        android:id="@+id/price_new_world"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="50dp"
+                        android:text="$10.00"
+                        android:textColor="@color/colorfont"
+                        android:layout_below="@id/txt_tax_new_world"/>
+
+                    <ImageView
+                        android:layout_width="130dp"
+                        android:layout_height="match_parent"
                         android:layout_toRightOf="@id/txt_new_world"
-                        android:layout_below="@+id/price_new_world"/>
+                        android:layout_marginRight="5dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/icon_price"/>
 
                 </RelativeLayout>
 

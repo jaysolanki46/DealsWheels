@@ -5,10 +5,12 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.speech.RecognizerIntent;
 import android.support.annotation.Nullable;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -26,6 +28,43 @@ public class CategoryActivity extends AppCompatActivity {
 
     List<Category> categories;
 
+    public List<Category> getcategories(String category_name) {
+
+        ConnectionClass conn = new ConnectionClass();
+        Statement stmt = conn.getConnection();
+        ResultSet result = null;
+        categories = new ArrayList<>();
+        try {
+            if(category_name == "all") {
+                result = stmt.executeQuery("select * from Categories");
+            } else {
+                result = stmt.executeQuery("select * from Categories where cat_name LIKE '"+ category_name +"%'");
+            }
+
+            while(result.next()){
+                int image = getResources().getIdentifier( result.getString("cat_image"), "drawable", getPackageName());
+                categories.add(new Category(
+                        result.getString("cat_id"),
+                        result.getString("cat_name"), image));
+            }
+            conn.connectionClose();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return categories;
+    }
+
+    public void search(String category_name) {
+
+        categories = getcategories(category_name);
+
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        CategoryAdapter categoryAdapter = new CategoryAdapter(this, categories);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        recyclerView.setAdapter(categoryAdapter);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,25 +74,12 @@ public class CategoryActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.title_shop_n_save);
 
-        // Start Database operations
-        ConnectionClass conn = new ConnectionClass();
-        Statement stmt = conn.getConnection();
-        ResultSet result = null;
-        categories = new ArrayList<>();
-        try {
-            result = stmt.executeQuery("select * from Categories");
-            while(result.next()){
-                categories.add(new Category(result.getString("cat_id"), result.getString("cat_name"), 0));
-            }
-            conn.connectionClose();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        // End Database operations
+        // get from database
+        categories = getcategories("all");
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         CategoryAdapter categoryAdapter = new CategoryAdapter(this, categories);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         recyclerView.setAdapter(categoryAdapter);
     }
 
@@ -68,6 +94,24 @@ public class CategoryActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater =  getMenuInflater();
         menuInflater.inflate(R.menu.activity_search, menu);
+        MenuItem searchItem = menu.findItem(R.id.search_bar_id);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                search(newText);
+                return true;
+            }
+        });
+
+
         return true;
     }
 
