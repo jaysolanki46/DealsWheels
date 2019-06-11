@@ -27,6 +27,7 @@ import java.util.Locale;
 public class CategoryActivity extends AppCompatActivity {
 
     List<Category> categories;
+    boolean SEARCH_FLAG = true;
 
     public List<Category> getcategories(String category_name) {
 
@@ -38,7 +39,19 @@ public class CategoryActivity extends AppCompatActivity {
             if(category_name == "all") {
                 result = stmt.executeQuery("select * from Categories");
             } else {
-                result = stmt.executeQuery("select * from Categories where cat_name LIKE '"+ category_name +"%'");
+                result = stmt.executeQuery("select * from Categories where cat_name LIKE '%"+ category_name +"%'");
+
+                if(!result.next()) {
+                    Toast.makeText(getApplicationContext(), "No result found !", Toast.LENGTH_LONG).show();
+                    result = stmt.executeQuery("select * from Categories");
+                } else {
+                    do {
+                        int image = getResources().getIdentifier( result.getString("cat_image"), "drawable", getPackageName());
+                        categories.add(new Category(
+                                result.getString("cat_id"),
+                                result.getString("cat_name"), image));
+                    } while(result.next());
+                }
             }
 
             while(result.next()){
@@ -69,6 +82,7 @@ public class CategoryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categories);
+        SEARCH_FLAG = true;
 
         //Header
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
@@ -105,8 +119,11 @@ public class CategoryActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-
-                search(newText);
+                if(SEARCH_FLAG) {
+                    SEARCH_FLAG = false;
+                } else {
+                    search(newText);
+                }
                 return true;
             }
         });
@@ -145,8 +162,8 @@ public class CategoryActivity extends AppCompatActivity {
             case 10:
                 if(resultCode == RESULT_OK && data != null){
                     ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    // Grab voice result -> result.get(0)
-                    System.err.print(result.get(0));
+                    search(result.get(0).toString());
+
                 }
                 break;
         }

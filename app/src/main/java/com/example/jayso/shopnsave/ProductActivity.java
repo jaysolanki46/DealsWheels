@@ -3,6 +3,8 @@ package com.example.jayso.shopnsave;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
+import android.support.annotation.Nullable;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -16,18 +18,21 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class ProductActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     ProductAdapter productAdapter;
     List<Product> products;
+    boolean SEARCH_FLAG = true;
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -38,6 +43,9 @@ public class ProductActivity extends AppCompatActivity {
                 intent.putExtra("cat_id", getIntent().getStringExtra("cat_id"));
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
+                return true;
+            case R.id.voice_bar_id:
+                getMic();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -58,7 +66,48 @@ public class ProductActivity extends AppCompatActivity {
                         "select prod.*, price.* from Products prod LEFT JOIN Product_prices price ON prod.prod_id = price.prod_id where prod.prod_cat_id ="+ prod_cat_id +"");
             } else {
                 result = stmt.executeQuery(
-                        "select prod.*, price.* from Products prod LEFT JOIN Product_prices price ON prod.prod_id = price.prod_id where prod.prod_cat_id ="+ prod_cat_id +" and prod.prod_name LIKE '"+ product_name +"%'");
+                        "select prod.*, price.* from Products prod LEFT JOIN Product_prices price ON prod.prod_id = price.prod_id where prod.prod_cat_id ="+ prod_cat_id +" and prod.prod_name LIKE '%"+ product_name +"%'");
+
+                if(!result.next()) {
+                    Toast.makeText(getApplicationContext(), "No result found !", Toast.LENGTH_LONG).show();
+                    result = stmt.executeQuery(
+                            "select prod.*, price.* from Products prod LEFT JOIN Product_prices price ON prod.prod_id = price.prod_id where prod.prod_cat_id ="+ prod_cat_id +"");
+                } else {
+                    do {
+                        int image = getResources().getIdentifier( result.getString("prod_image"), "drawable", getPackageName());
+                        Float price_paknsave = 0.0f;
+                        Float price_coundown = 0.0f;
+                        Float price_newworld = 0.0f;
+
+                        String result_price_paknsave = result.getString("pak_n_save_price");
+                        String result_price_coundown = result.getString("coundown_price");
+                        String result_price_newworld = result.getString("new_world_price");
+
+                        if(result_price_paknsave != null) {
+                            price_paknsave = Float.valueOf(result.getString("pak_n_save_price"));
+                        }
+
+                        if(result_price_coundown != null) {
+                            price_coundown = Float.valueOf(result.getString("coundown_price"));
+                        }
+
+                        if(result_price_newworld != null) {
+                            price_newworld = Float.valueOf(result.getString("new_world_price"));
+                        }
+
+                        products.
+                                add(new Product(
+                                        result.getString("prod_id"),
+                                        result.getString("cat_id"),
+                                        result.getString("prod_cat_id"),
+                                        result.getString("prod_name"),
+                                        result.getString("prod_store_counter"),
+                                        image,
+                                        price_paknsave,
+                                        price_coundown,
+                                        price_newworld));
+                    } while(result.next());
+                }
             }
 
             while(result.next()){
@@ -115,6 +164,7 @@ public class ProductActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products);
+        SEARCH_FLAG = true;
 
         //back button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -169,13 +219,42 @@ public class ProductActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-
-                search(newText);
+                if(SEARCH_FLAG) {
+                    SEARCH_FLAG = false;
+                } else {
+                    search(newText);
+                }
                 return true;
             }
         });
 
 
         return true;
+    }
+
+    public void getMic() {
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+
+        if(intent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(intent, 10);
+        } else {
+            Toast.makeText(this, "Your device is not supported this feature !", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            case 10:
+                if(resultCode == RESULT_OK && data != null){
+                    ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    search(result.get(0).toString());
+                }
+                break;
+        }
     }
 }
