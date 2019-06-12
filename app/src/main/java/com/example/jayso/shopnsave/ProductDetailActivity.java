@@ -16,6 +16,9 @@ import java.util.ArrayList;
 
 public class ProductDetailActivity extends AppCompatActivity {
 
+    String shareBody = "";
+    String shareSubject = "Shop N Save";
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -26,9 +29,17 @@ public class ProductDetailActivity extends AppCompatActivity {
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 return true;
-            default:
-                return super.onOptionsItemSelected(item);
+            case R.id.share_button:
+                Intent intentShare = new Intent(Intent.ACTION_SEND);
+                intentShare.setType("text/plain");
+                intentShare.putExtra(Intent.EXTRA_SUBJECT, shareSubject);
+                intentShare.putExtra(Intent.EXTRA_TEXT, shareBody);
+
+                startActivity(Intent.createChooser(intentShare, "Share Using"));
+
+                break;
         }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -103,6 +114,13 @@ public class ProductDetailActivity extends AppCompatActivity {
                 } else {
                     textview_price_new_world.setText("N/A");
                 }
+
+                shareBody = "Hi, hope you well today ! " +
+                        "\nHurry !!!! grab your grocery today," +
+                        "\n\n" + name + "available in "+
+                        "\n Pak N Save : $ " + price_paknsave.toString() +
+                        "\n Coundown : $ " + price_coundown.toString() +
+                        "\n New World : $ " + price_newworld.toString();
             }
             conn.connectionClose();
         } catch (SQLException e) {
