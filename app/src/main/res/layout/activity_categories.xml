@@ -7,27 +7,17 @@
     android:orientation="vertical"
     android:background="@color/colorbackground">
 
-    <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content">-->
-
-        <!--<ViewFlipper-->
-            <!--android:id="@+id/view_flipper"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="200dp"-->
-            <!--android:layout_centerHorizontal="true"/>-->
-
-    <!--</LinearLayout>-->
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:background="@drawable/icon_top_static">
     </LinearLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".CategoryActivity">
+        tools:context=".CategoryActivity"
+        android:layout_marginBottom="10dp">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"

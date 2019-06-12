@@ -85,8 +85,9 @@ public class CategoryActivity extends AppCompatActivity {
         SEARCH_FLAG = true;
 
         //Header
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.title_shop_n_save);
+        //getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        //getSupportActionBar().setCustomView(R.layout.title_shop_n_save);
+        getSupportActionBar().setTitle("Shop N Save");
 
         // get from database
         categories = getcategories("all");
@@ -114,7 +115,8 @@ public class CategoryActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                return false;
+                search(query);
+                return true;
             }
 
             @Override
@@ -137,6 +139,9 @@ public class CategoryActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.voice_bar_id:
                 getMic();
+                return true;
+            case R.id.refresh_id:
+                search("all");
                 return true;
         }
         return super.onOptionsItemSelected(item);

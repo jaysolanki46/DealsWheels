@@ -47,6 +47,9 @@ public class ProductActivity extends AppCompatActivity {
             case R.id.voice_bar_id:
                 getMic();
                 return true;
+            case R.id.refresh_id:
+                search("all");
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -214,7 +217,8 @@ public class ProductActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                return false;
+                search(query);
+                return true;
             }
 
             @Override
