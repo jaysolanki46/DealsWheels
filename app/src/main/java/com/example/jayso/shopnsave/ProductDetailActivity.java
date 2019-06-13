@@ -117,7 +117,7 @@ public class ProductDetailActivity extends AppCompatActivity {
 
                 shareBody = "Hi, hope you well today ! " +
                         "\nHurry !!!! grab your grocery today," +
-                        "\n\n" + name + "available in "+
+                        "\n\n" + name + " available in "+
                         "\n Pak N Save : $ " + price_paknsave.toString() +
                         "\n Coundown : $ " + price_coundown.toString() +
                         "\n New World : $ " + price_newworld.toString();
