@@ -41,14 +41,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ListView
         listViewHolder.product_image.setBackgroundResource(product.getProduct_image());
 
         // Max price
-        if(product.getProduct_pak_n_save_price() > product.getProduct_coundown_price()
-                && product.getProduct_pak_n_save_price() > product.getProduct_new_world_price()) {
+        if(product.getProduct_pak_n_save_price() >= product.getProduct_coundown_price()
+                && product.getProduct_pak_n_save_price() >= product.getProduct_new_world_price()) {
 
             listViewHolder.product_max_price.setText(
                     String.valueOf(product.getProduct_pak_n_save_price()));
 
-        } else if(product.getProduct_coundown_price() > product.getProduct_pak_n_save_price()
-                && product.getProduct_coundown_price() > product.getProduct_new_world_price()) {
+        } else if(product.getProduct_coundown_price() >= product.getProduct_pak_n_save_price()
+                && product.getProduct_coundown_price() >= product.getProduct_new_world_price()) {
 
             listViewHolder.product_max_price.setText(
                     String.valueOf(product.getProduct_coundown_price()));
@@ -59,14 +59,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ListView
         }
 
         // Min price
-        if(product.getProduct_pak_n_save_price() < product.getProduct_coundown_price()
-                && product.getProduct_pak_n_save_price() < product.getProduct_new_world_price()) {
+        if(product.getProduct_pak_n_save_price() <= product.getProduct_coundown_price()
+                && product.getProduct_pak_n_save_price() <= product.getProduct_new_world_price()) {
 
             listViewHolder.product_min_price.setText(
                     String.valueOf(product.getProduct_pak_n_save_price()));
 
-        } else if(product.getProduct_coundown_price() < product.getProduct_pak_n_save_price()
-                && product.getProduct_coundown_price() < product.getProduct_new_world_price()) {
+        } else if(product.getProduct_coundown_price() <= product.getProduct_pak_n_save_price()
+                && product.getProduct_coundown_price() <= product.getProduct_new_world_price()) {
 
             listViewHolder.product_min_price.setText(
                     String.valueOf(product.getProduct_coundown_price()));
