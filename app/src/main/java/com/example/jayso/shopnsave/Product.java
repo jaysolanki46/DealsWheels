@@ -7,14 +7,14 @@ public class Product {
     private String product_category_id;
     private String product_name;
     private String product_store_count;
-    private int product_image;
+    private String product_image;
     private float product_pak_n_save_price;
     private float product_coundown_price;
     private float product_new_world_price;
 
     public Product(){}
 
-    public Product(String product_id, String category_id, String product_category_id, String product_name, String product_store_count, int product_image, float product_pak_n_save_price, float product_coundown_price, float product_new_world_price) {
+    public Product(String product_id, String category_id, String product_category_id, String product_name, String product_store_count, String product_image, float product_pak_n_save_price, float product_coundown_price, float product_new_world_price) {
         this.product_id = product_id;
         this.category_id = category_id;
         this.product_category_id = product_category_id;
@@ -66,11 +66,11 @@ public class Product {
         this.product_store_count = product_store_count;
     }
 
-    public int getProduct_image() {
+    public String getProduct_image() {
         return product_image;
     }
 
-    public void setProduct_image(int product_image) {
+    public void setProduct_image(String product_image) {
         this.product_image = product_image;
     }
 

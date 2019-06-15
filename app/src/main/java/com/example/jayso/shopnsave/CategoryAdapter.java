@@ -1,6 +1,7 @@
 package com.example.jayso.shopnsave;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,12 +13,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyViewHolder> {
 
     private Context mContext;
     private List<Category> categories;
     private int lastPosition = -5;
+
 
     public CategoryAdapter(Context mContext, List<Category> categories) {
         this.mContext = mContext;
@@ -39,7 +42,14 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
 
         myViewHolder.category_id.setText(categories.get(i).getCategory_id());
         myViewHolder.category_title.setText(categories.get(i).getCategory_title());
-        myViewHolder.category_image.setImageResource(categories.get(i).getCategory_image());
+        Bitmap image = null;
+        try {
+            image = new RetriveImage(categories.get(i).getCategory_image().toString()).execute().get();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        myViewHolder.category_image.setImageBitmap(image);
         setAnimation(myViewHolder.itemView, i);
     }
 
@@ -67,7 +77,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
     {
         if (position > lastPosition)
         {
-            Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.sample_anim);
+            Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.bounce);
             viewToAnimate.startAnimation(animation);
             lastPosition = position;
         }

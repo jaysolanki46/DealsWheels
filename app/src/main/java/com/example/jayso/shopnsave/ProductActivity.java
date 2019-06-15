@@ -77,7 +77,6 @@ public class ProductActivity extends AppCompatActivity {
                             "select prod.*, price.* from Products prod LEFT JOIN Product_prices price ON prod.prod_id = price.prod_id where prod.prod_cat_id ="+ prod_cat_id +"");
                 } else {
                     do {
-                        int image = getResources().getIdentifier( result.getString("prod_image"), "drawable", getPackageName());
                         Float price_paknsave = 0.0f;
                         Float price_coundown = 0.0f;
                         Float price_newworld = 0.0f;
@@ -105,7 +104,7 @@ public class ProductActivity extends AppCompatActivity {
                                         result.getString("prod_cat_id"),
                                         result.getString("prod_name"),
                                         result.getString("prod_store_counter"),
-                                        image,
+                                        result.getString("prod_image"),
                                         price_paknsave,
                                         price_coundown,
                                         price_newworld));
@@ -114,7 +113,6 @@ public class ProductActivity extends AppCompatActivity {
             }
 
             while(result.next()){
-                int image = getResources().getIdentifier( result.getString("prod_image"), "drawable", getPackageName());
                 Float price_paknsave = 0.0f;
                 Float price_coundown = 0.0f;
                 Float price_newworld = 0.0f;
@@ -142,7 +140,7 @@ public class ProductActivity extends AppCompatActivity {
                                 result.getString("prod_cat_id"),
                                 result.getString("prod_name"),
                                 result.getString("prod_store_counter"),
-                                image,
+                                result.getString("prod_image"),
                                 price_paknsave,
                                 price_coundown,
                                 price_newworld));

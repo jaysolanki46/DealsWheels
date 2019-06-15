@@ -1,6 +1,7 @@
 package com.example.jayso.shopnsave;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -70,10 +71,15 @@ public class ProductDetailActivity extends AppCompatActivity {
                     "select prod.*, prodprice.* from Products prod LEFT JOIN Product_prices prodprice ON prod.prod_id = prodprice.prod_id where prod.prod_id = "+ prod_id +"");
             while(result.next()){
 
-                int image = getResources().getIdentifier( result.getString("prod_image"), "drawable", getPackageName());
-                String name = result.getString("prod_name");
+                Bitmap image = null;
+                try {
+                    image = new RetriveImage(result.getString("prod_image")).execute().get();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
-                imageview_product_image.setBackgroundResource(image);
+                imageview_product_image.setImageBitmap(image);
+                String name = result.getString("prod_name");
                 textview_product_name.setText(name);
 
                 Float price_paknsave = 0.0f;

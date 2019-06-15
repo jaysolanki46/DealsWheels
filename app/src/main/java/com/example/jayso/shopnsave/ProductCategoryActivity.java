@@ -70,25 +70,23 @@ public class ProductCategoryActivity extends AppCompatActivity {
                     result = stmt.executeQuery("select * from Product_categories where cat_id ="+ cat_id +"");
                 } else {
                     do {
-                        int image = getResources().getIdentifier( result.getString("prod_cat_image"), "drawable", getPackageName());
                         productCategories.
                                 add(new ProductCategory(
                                         result.getString("prod_cat_id"),
                                         result.getString("cat_id"),
                                         result.getString("prod_cat_name"),
-                                        image));
+                                        result.getString("prod_cat_image")));
                     } while(result.next());
                 }
             }
 
             while(result.next()){
-                int image = getResources().getIdentifier( result.getString("prod_cat_image"), "drawable", getPackageName());
                 productCategories.
                         add(new ProductCategory(
                                 result.getString("prod_cat_id"),
                                 result.getString("cat_id"),
                                 result.getString("prod_cat_name"),
-                                image));
+                                result.getString("prod_cat_image")));
             }
             conn.connectionClose();
         } catch (SQLException e) {

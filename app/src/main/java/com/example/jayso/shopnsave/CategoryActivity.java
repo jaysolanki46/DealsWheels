@@ -46,19 +46,19 @@ public class CategoryActivity extends AppCompatActivity {
                     result = stmt.executeQuery("select * from Categories");
                 } else {
                     do {
-                        int image = getResources().getIdentifier( result.getString("cat_image"), "drawable", getPackageName());
                         categories.add(new Category(
                                 result.getString("cat_id"),
-                                result.getString("cat_name"), image));
+                                result.getString("cat_name"),
+                                result.getString("cat_image")));
                     } while(result.next());
                 }
             }
 
             while(result.next()){
-                int image = getResources().getIdentifier( result.getString("cat_image"), "drawable", getPackageName());
                 categories.add(new Category(
                         result.getString("cat_id"),
-                        result.getString("cat_name"), image));
+                        result.getString("cat_name"),
+                        result.getString("cat_image")));
             }
             conn.connectionClose();
         } catch (SQLException e) {

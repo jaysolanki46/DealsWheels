@@ -1,6 +1,7 @@
 package com.example.jayso.shopnsave;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -38,7 +39,15 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ListView
         Product product = products.get(i);
         listViewHolder.product_id .setText(product.getProduct_id());
         listViewHolder.product_name.setText(product.getProduct_name());
-        listViewHolder.product_image.setBackgroundResource(product.getProduct_image());
+
+        Bitmap image = null;
+        try {
+            image = new RetriveImage(products.get(i).getProduct_image().toString()).execute().get();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        listViewHolder.product_image.setImageBitmap(image);
 
         // Max price
         if(product.getProduct_pak_n_save_price() >= product.getProduct_coundown_price()

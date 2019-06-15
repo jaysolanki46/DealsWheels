@@ -3,7 +3,7 @@ package com.example.jayso.shopnsave;
 public class Category {
 
     private String category_id;
-    private int category_image;
+    private String category_image;
     private String category_title;
 
     public Category(){}
@@ -16,11 +16,11 @@ public class Category {
         this.category_id = category_id;
     }
 
-    public int getCategory_image() {
+    public String getCategory_image() {
         return category_image;
     }
 
-    public void setCategory_image(int category_image) {
+    public void setCategory_image(String category_image) {
         this.category_image = category_image;
     }
 
@@ -32,7 +32,7 @@ public class Category {
         this.category_title = category_title;
     }
 
-    public Category(String category_id, String category_title, int category_image) {
+    public Category(String category_id, String category_title, String category_image) {
         this.category_id = category_id;
         this.category_image = category_image;
         this.category_title = category_title;
