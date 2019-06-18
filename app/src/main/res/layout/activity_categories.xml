@@ -5,19 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_margin="5dp"
     android:background="@color/colorbackground">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:background="@drawable/icon_top_static">
+        android:layout_gravity="center"
+        android:background="@drawable/icon_top_static1">
     </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:context=".CategoryActivity"
-        android:layout_marginBottom="10dp">
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"

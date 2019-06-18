@@ -45,7 +45,8 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/profile_layout"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="10dp">
 
             <android.support.v7.widget.CardView
                 android:id="@+id/card_pak_n_save"
@@ -58,7 +59,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/colorcard1"
-                    android:paddingLeft="5dp">
+                    android:padding="5dp">
 
                     <TextView
                         android:id="@+id/txt_pak_n_save"
@@ -84,7 +85,6 @@
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:textSize="50dp"
-                        android:text="$10.00"
                         android:textColor="@color/colorfont"
                         android:layout_below="@id/txt_tax_pak_n_save"/>
 
@@ -93,7 +93,7 @@
                         android:layout_height="match_parent"
                         android:layout_toRightOf="@id/txt_pak_n_save"
                         android:layout_marginRight="5dp"
-                        android:scaleType="centerCrop"
+                        android:scaleType="centerInside"
                         android:src="@drawable/icon_price"/>
 
                 </RelativeLayout>
@@ -111,7 +111,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/colorcard1"
-                    android:paddingLeft="5dp">
+                    android:padding="5dp">
 
                     <TextView
                         android:id="@+id/txt_coundown"
@@ -137,7 +137,6 @@
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:textSize="50dp"
-                        android:text="$10.00"
                         android:textColor="@color/colorfont"
                         android:layout_below="@id/txt_tax_coundown"/>
 
@@ -146,7 +145,7 @@
                         android:layout_height="match_parent"
                         android:layout_toRightOf="@id/txt_coundown"
                         android:layout_marginRight="5dp"
-                        android:scaleType="centerCrop"
+                        android:scaleType="centerInside"
                         android:src="@drawable/icon_price"/>
 
                 </RelativeLayout>
@@ -164,7 +163,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/colorcard1"
-                    android:paddingLeft="5dp">
+                    android:padding="5dp">
 
                     <TextView
                         android:id="@+id/txt_new_world"
@@ -190,7 +189,6 @@
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:textSize="50dp"
-                        android:text="$10.00"
                         android:textColor="@color/colorfont"
                         android:layout_below="@id/txt_tax_new_world"/>
 
@@ -199,7 +197,7 @@
                         android:layout_height="match_parent"
                         android:layout_toRightOf="@id/txt_new_world"
                         android:layout_marginRight="5dp"
-                        android:scaleType="centerCrop"
+                        android:scaleType="centerInside"
                         android:src="@drawable/icon_price"/>
 
                 </RelativeLayout>

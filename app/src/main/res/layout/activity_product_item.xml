@@ -26,7 +26,8 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentTop="true"
                 android:layout_marginRight="5dp"
-                android:scaleType="centerCrop"/>
+                android:scaleType="fitCenter"
+                android:src="@drawable/icon_no_image_found"/>
 
             <TextView
                 android:id="@+id/product_id"
@@ -52,7 +53,7 @@
                 android:id="@+id/id_max"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Max : "
+                android:text="MAX : "
                 android:textSize="16sp"
                 android:textColor="@color/colorfont"
                 android:layout_below="@+id/product_name"
@@ -73,7 +74,7 @@
                 android:id="@+id/id_min"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Min : "
+                android:text="MIN  : "
                 android:textSize="16sp"
                 android:textColor="@color/colorfont"
                 android:layout_below="@+id/id_max"

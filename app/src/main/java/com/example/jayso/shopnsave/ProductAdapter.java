@@ -48,7 +48,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ListView
             e.printStackTrace();
         }
 
-        listViewHolder.product_image.setImageBitmap(image);
+        if(image != null) {
+            listViewHolder.product_image.setImageBitmap(image);
+        } else {
+            listViewHolder.product_image.setImageResource(R.drawable.icon_no_image_found);
+        }
 
         List<Float> prices = new ArrayList<>();
 

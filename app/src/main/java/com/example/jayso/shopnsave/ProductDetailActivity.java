@@ -79,12 +79,17 @@ public class ProductDetailActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                imageview_product_image.setImageBitmap(image);
+                if(image != null) {
+                    imageview_product_image.setImageBitmap(image);
+                } else {
+                    imageview_product_image.setImageResource(R.drawable.icon_no_image_found);
+                }
+
                 String name = result.getString("prod_name");
                 textview_product_name.setText(name);
-                textview_price_pak_n_save.setText(result.getString("pak_n_save_price"));
-                textview_price_coundown.setText(result.getString("coundown_price"));
-                textview_price_new_world.setText(result.getString("new_world_price"));
+                textview_price_pak_n_save.setText("$ " + result.getString("pak_n_save_price"));
+                textview_price_coundown.setText("$ " + result.getString("coundown_price"));
+                textview_price_new_world.setText("$ " + result.getString("new_world_price"));
 
                 shareBody = "Hi, hope you well today ! " +
                         "\nHurry !!!! grab your grocery today," +

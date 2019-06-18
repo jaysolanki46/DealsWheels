@@ -47,7 +47,11 @@ public class ProductCategoryAdapter extends RecyclerView.Adapter<ProductCategory
             e.printStackTrace();
         }
 
-        listViewHolder.productCategoryImage.setImageBitmap(image);
+        if(image != null) {
+            listViewHolder.productCategoryImage.setImageBitmap(image);
+        } else {
+            listViewHolder.productCategoryImage.setImageResource(R.drawable.icon_no_image_found);
+        }
         setAnimation(listViewHolder.itemView, i);
     }
 

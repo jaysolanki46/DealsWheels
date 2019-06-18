@@ -49,7 +49,12 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
             e.printStackTrace();
         }
 
-        myViewHolder.category_image.setImageBitmap(image);
+        if(image != null) {
+            myViewHolder.category_image.setImageBitmap(image);
+        } else {
+            myViewHolder.category_image.setImageResource(R.drawable.icon_no_image_found);
+        }
+
         setAnimation(myViewHolder.itemView, i);
     }
 
