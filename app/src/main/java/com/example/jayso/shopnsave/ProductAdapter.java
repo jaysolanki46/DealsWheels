@@ -12,6 +12,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ListViewHolder> {
@@ -37,7 +38,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ListView
     @Override
     public void onBindViewHolder(@NonNull ListViewHolder listViewHolder, int i) {
         Product product = products.get(i);
-        listViewHolder.product_id .setText(product.getProduct_id());
+        listViewHolder.product_id.setText(product.getProduct_id());
         listViewHolder.product_name.setText(product.getProduct_name());
 
         Bitmap image = null;
@@ -49,42 +50,42 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ListView
 
         listViewHolder.product_image.setImageBitmap(image);
 
-        // Max price
-        if(product.getProduct_pak_n_save_price() >= product.getProduct_coundown_price()
-                && product.getProduct_pak_n_save_price() >= product.getProduct_new_world_price()) {
+        List<Float> prices = new ArrayList<>();
 
-            listViewHolder.product_max_price.setText(
-                    String.valueOf(product.getProduct_pak_n_save_price()));
-
-        } else if(product.getProduct_coundown_price() >= product.getProduct_pak_n_save_price()
-                && product.getProduct_coundown_price() >= product.getProduct_new_world_price()) {
-
-            listViewHolder.product_max_price.setText(
-                    String.valueOf(product.getProduct_coundown_price()));
-        } else {
-
-            listViewHolder.product_max_price.setText(
-                    String.valueOf(product.getProduct_new_world_price()));
+        if (!product.getProduct_pak_n_save_price().equals("N/A")) {
+            prices.add(Float.valueOf(product.getProduct_pak_n_save_price()));
         }
 
-        // Min price
-        if(product.getProduct_pak_n_save_price() <= product.getProduct_coundown_price()
-                && product.getProduct_pak_n_save_price() <= product.getProduct_new_world_price()) {
-
-            listViewHolder.product_min_price.setText(
-                    String.valueOf(product.getProduct_pak_n_save_price()));
-
-        } else if(product.getProduct_coundown_price() <= product.getProduct_pak_n_save_price()
-                && product.getProduct_coundown_price() <= product.getProduct_new_world_price()) {
-
-            listViewHolder.product_min_price.setText(
-                    String.valueOf(product.getProduct_coundown_price()));
-        } else {
-
-            listViewHolder.product_min_price.setText(
-                    String.valueOf(product.getProduct_new_world_price()));
+        if (!product.getProduct_coundown_price().equals("N/A")) {
+            prices.add(Float.valueOf(product.getProduct_coundown_price()));
         }
 
+        if (!product.getProduct_new_world_price().equals("N/A")) {
+            prices.add(Float.valueOf(product.getProduct_new_world_price()));
+        }
+
+        if(prices.isEmpty()) {
+            listViewHolder.product_max_price.setText("N/A");
+            listViewHolder.product_min_price.setText("N/A");
+        } else {
+            Float max_price = prices.get(0);
+            Float min_price = prices.get(0);
+
+            for(int j=1;j < prices.size();j++){
+                if(prices.get(j) > max_price){
+                    max_price = prices.get(j);
+                }
+            }
+
+            for(int j=1;j < prices.size();j++){
+                if(prices.get(j) < min_price){
+                    min_price = prices.get(j);
+                }
+            }
+
+            listViewHolder.product_max_price.setText(String.valueOf(max_price));
+            listViewHolder.product_min_price.setText(String.valueOf(min_price));
+        }
         listViewHolder.product_store_count.setText(product.getProduct_store_count() + " Stores");
         setAnimation(listViewHolder.itemView, i);
     }

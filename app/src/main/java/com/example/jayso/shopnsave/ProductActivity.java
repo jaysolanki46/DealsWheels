@@ -77,26 +77,6 @@ public class ProductActivity extends AppCompatActivity {
                             "select prod.*, price.* from Products prod LEFT JOIN Product_prices price ON prod.prod_id = price.prod_id where prod.prod_cat_id ="+ prod_cat_id +"");
                 } else {
                     do {
-                        Float price_paknsave = 0.0f;
-                        Float price_coundown = 0.0f;
-                        Float price_newworld = 0.0f;
-
-                        String result_price_paknsave = result.getString("pak_n_save_price");
-                        String result_price_coundown = result.getString("coundown_price");
-                        String result_price_newworld = result.getString("new_world_price");
-
-                        if(result_price_paknsave != null) {
-                            price_paknsave = Float.valueOf(result.getString("pak_n_save_price"));
-                        }
-
-                        if(result_price_coundown != null) {
-                            price_coundown = Float.valueOf(result.getString("coundown_price"));
-                        }
-
-                        if(result_price_newworld != null) {
-                            price_newworld = Float.valueOf(result.getString("new_world_price"));
-                        }
-
                         products.
                                 add(new Product(
                                         result.getString("prod_id"),
@@ -105,33 +85,14 @@ public class ProductActivity extends AppCompatActivity {
                                         result.getString("prod_name"),
                                         result.getString("prod_store_counter"),
                                         result.getString("prod_image"),
-                                        price_paknsave,
-                                        price_coundown,
-                                        price_newworld));
+                                        result.getString("pak_n_save_price"),
+                                        result.getString("coundown_price"),
+                                        result.getString("new_world_price")));
                     } while(result.next());
                 }
             }
 
             while(result.next()){
-                Float price_paknsave = 0.0f;
-                Float price_coundown = 0.0f;
-                Float price_newworld = 0.0f;
-
-                String result_price_paknsave = result.getString("pak_n_save_price");
-                String result_price_coundown = result.getString("coundown_price");
-                String result_price_newworld = result.getString("new_world_price");
-
-                if(result_price_paknsave != null) {
-                    price_paknsave = Float.valueOf(result.getString("pak_n_save_price"));
-                }
-
-                if(result_price_coundown != null) {
-                    price_coundown = Float.valueOf(result.getString("coundown_price"));
-                }
-
-                if(result_price_newworld != null) {
-                    price_newworld = Float.valueOf(result.getString("new_world_price"));
-                }
 
                 products.
                         add(new Product(
@@ -141,9 +102,9 @@ public class ProductActivity extends AppCompatActivity {
                                 result.getString("prod_name"),
                                 result.getString("prod_store_counter"),
                                 result.getString("prod_image"),
-                                price_paknsave,
-                                price_coundown,
-                                price_newworld));
+                                result.getString("pak_n_save_price"),
+                                result.getString("coundown_price"),
+                                result.getString("new_world_price")));
             }
             conn.connectionClose();
         } catch (SQLException e) {
@@ -191,6 +152,7 @@ public class ProductActivity extends AppCompatActivity {
 
         TextView product_id = (TextView)view.findViewById(R.id.product_id);
         intent.putExtra("prod_id", product_id.getText());
+        intent.putExtra("cat_id", getIntent().getStringExtra("cat_id"));
 
         ImageView productImage = (ImageView) findViewById(R.id.product_image);
         TextView productName = (TextView) findViewById(R.id.product_name);

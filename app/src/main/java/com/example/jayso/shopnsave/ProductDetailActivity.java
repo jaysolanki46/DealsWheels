@@ -27,6 +27,7 @@ public class ProductDetailActivity extends AppCompatActivity {
                 // app icon in action bar clicked; go home
                 Intent intent = new Intent(this, ProductActivity.class);
                 intent.putExtra("prod_cat_id", getIntent().getStringExtra("prod_cat_id"));
+                intent.putExtra("cat_id", getIntent().getStringExtra("cat_id"));
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 return true;
@@ -81,52 +82,16 @@ public class ProductDetailActivity extends AppCompatActivity {
                 imageview_product_image.setImageBitmap(image);
                 String name = result.getString("prod_name");
                 textview_product_name.setText(name);
-
-                Float price_paknsave = 0.0f;
-                Float price_coundown = 0.0f;
-                Float price_newworld = 0.0f;
-
-                String result_price_paknsave = result.getString("pak_n_save_price");
-                String result_price_coundown = result.getString("coundown_price");
-                String result_price_newworld = result.getString("new_world_price");
-
-                if(result_price_paknsave != null) {
-                    price_paknsave = Float.valueOf(result.getString("pak_n_save_price"));
-                }
-
-                if(result_price_coundown != null) {
-                    price_coundown = Float.valueOf(result.getString("coundown_price"));
-                }
-
-                if(result_price_newworld != null) {
-                    price_newworld = Float.valueOf(result.getString("new_world_price"));
-                }
-
-
-                if(price_paknsave > 0) {
-                   textview_price_pak_n_save.setText("$ " + price_paknsave.toString());
-                } else {
-                    textview_price_pak_n_save.setText("N/A");
-                }
-
-                if(price_coundown > 0) {
-                    textview_price_coundown.setText("$ " + price_coundown.toString());
-                } else {
-                    textview_price_coundown.setText("N/A");
-                }
-
-                if(price_newworld > 0) {
-                    textview_price_new_world.setText("$ " + price_newworld.toString());
-                } else {
-                    textview_price_new_world.setText("N/A");
-                }
+                textview_price_pak_n_save.setText(result.getString("pak_n_save_price"));
+                textview_price_coundown.setText(result.getString("coundown_price"));
+                textview_price_new_world.setText(result.getString("new_world_price"));
 
                 shareBody = "Hi, hope you well today ! " +
                         "\nHurry !!!! grab your grocery today," +
                         "\n\n" + name + " available in "+
-                        "\n Pak N Save : $ " + price_paknsave.toString() +
-                        "\n Coundown : $ " + price_coundown.toString() +
-                        "\n New World : $ " + price_newworld.toString();
+                        "\n Pak N Save : $ " + result.getString("pak_n_save_price") +
+                        "\n Coundown : $ " + result.getString("coundown_price") +
+                        "\n New World : $ " + result.getString("new_world_price");
             }
             conn.connectionClose();
         } catch (SQLException e) {
