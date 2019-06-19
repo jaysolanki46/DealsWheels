@@ -27,6 +27,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginRight="5dp"
                 android:scaleType="fitCenter"
+                android:padding="5dp"
                 android:src="@drawable/icon_no_image_found"/>
 
             <TextView

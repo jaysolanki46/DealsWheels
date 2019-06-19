@@ -5,11 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
-
-
+    tools:context=".MainActivity"
+    android:layout_marginTop="10dp">
 
     <android.support.v7.widget.RecyclerView
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_centerHorizontal="true"
         android:id="@+id/recycler_view_product_categories"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
