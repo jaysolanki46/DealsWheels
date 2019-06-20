@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity"
+    tools:context=".ProductCategoryActivity"
     android:layout_marginTop="10dp">
 
     <Spinner
@@ -13,10 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="15dp"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/colorcard"
-        android:textColorHint="@color/colorcard"
-        android:textColorHighlight="@color/colorcard"/>
+        android:layout_margin="10dp"
+        android:background="@drawable/spinner_background"/>
 
     <android.support.v7.widget.RecyclerView
         android:layout_marginLeft="40dp"

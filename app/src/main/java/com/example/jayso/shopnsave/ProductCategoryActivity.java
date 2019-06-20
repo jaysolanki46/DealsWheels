@@ -39,12 +39,6 @@ public class ProductCategoryActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case android.R.id.home:
-                // app icon in action bar clicked; go home
-                Intent intent = new Intent(this, CategoryActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                return true;
             case R.id.voice_bar_id:
                 getMic();
                 return true;
@@ -158,9 +152,6 @@ public class ProductCategoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_product_categories);
         SEARCH_FLAG = true;
 
-        //back button
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         // Header
         getSupportActionBar().setTitle("Product Category");
 
@@ -184,6 +175,7 @@ public class ProductCategoryActivity extends AppCompatActivity {
 
                 productCategoryAdapter = new ProductCategoryAdapter(ProductCategoryActivity.this, productCategories);
                 recyclerView.setLayoutManager(new GridLayoutManager(ProductCategoryActivity.this, 2));
+
                 recyclerView.setAdapter(productCategoryAdapter);
                 recyclerView.getAdapter().notifyDataSetChanged();
             }

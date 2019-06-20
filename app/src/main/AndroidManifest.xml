@@ -16,7 +16,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.jayso.shopnsave.CategoryActivity"></activity>
         <activity android:name="com.example.jayso.shopnsave.ProductActivity"></activity>
         <activity android:name="com.example.jayso.shopnsave.ProductDetailActivity"></activity>
         <activity android:name="com.example.jayso.shopnsave.ProductCategoryActivity"></activity>

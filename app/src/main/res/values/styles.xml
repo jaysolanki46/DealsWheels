@@ -18,4 +18,8 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="Progressbar" parent="AppTheme">
+        <item name="colorControlActivated">@color/headertoolbaar</item>
+    </style>
+
 </resources>

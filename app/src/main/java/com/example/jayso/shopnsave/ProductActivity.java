@@ -40,7 +40,6 @@ public class ProductActivity extends AppCompatActivity {
             case android.R.id.home:
                 // app icon in action bar clicked; go home
                 Intent intent = new Intent(this, ProductCategoryActivity.class);
-                intent.putExtra("cat_id", getIntent().getStringExtra("cat_id"));
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 return true;
