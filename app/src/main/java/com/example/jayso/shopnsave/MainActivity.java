@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent);
                         finish();
                     } else {
-                        Intent categoriesIntent = new Intent(MainActivity.this, CategoryActivity.class);
+                        Intent categoriesIntent = new Intent(MainActivity.this, ProductCategoryActivity.class);
                         startActivity(categoriesIntent);
                         finish();
                     }

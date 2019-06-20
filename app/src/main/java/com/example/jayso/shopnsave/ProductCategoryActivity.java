@@ -14,6 +14,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +33,8 @@ public class ProductCategoryActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     ProductCategoryAdapter productCategoryAdapter;
     boolean SEARCH_FLAG = true;
+    Spinner spinnerCategory;
+    List<Category> categories = null;
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -51,23 +56,65 @@ public class ProductCategoryActivity extends AppCompatActivity {
         }
     }
 
-    public List<ProductCategory> getProductCategories(String product_category_name) {
+    public List<ProductCategory> getSearchedProductCategories(String product_category_name) {
 
         ConnectionClass conn = new ConnectionClass();
         Statement stmt = conn.getConnection();
         ResultSet result = null;
         productCategories = new ArrayList<>();
-        String cat_id = getIntent().getStringExtra("cat_id");
 
         try {
             if(product_category_name == "all") {
-                result = stmt.executeQuery("select * from Product_categories where cat_id ="+ cat_id +"");
+                result = stmt.executeQuery("select * from Product_categories");
             } else {
-                result = stmt.executeQuery("select * from Product_categories where cat_id ="+ cat_id +" and prod_cat_name LIKE '%"+ product_category_name +"%'");
+                result = stmt.executeQuery("select * from Product_categories where prod_cat_name LIKE '%"+ product_category_name +"%'");
 
                 if(!result.next()) {
                     Toast.makeText(getApplicationContext(), "No result found !", Toast.LENGTH_LONG).show();
-                    result = stmt.executeQuery("select * from Product_categories where cat_id ="+ cat_id +"");
+                    result = stmt.executeQuery("select * from Product_categories");
+                } else {
+                    do {
+                        productCategories.
+                                add(new ProductCategory(
+                                        result.getString("prod_cat_id"),
+                                        result.getString("cat_id"),
+                                        result.getString("prod_cat_name"),
+                                        result.getString("prod_cat_image")));
+                    } while(result.next());
+                }
+            }
+
+            while(result.next()){
+                productCategories.
+                        add(new ProductCategory(
+                                result.getString("prod_cat_id"),
+                                result.getString("cat_id"),
+                                result.getString("prod_cat_name"),
+                                result.getString("prod_cat_image")));
+            }
+            conn.connectionClose();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return productCategories;
+    }
+
+    public List<ProductCategory> getProductCategories(String cat_id) {
+
+        ConnectionClass conn = new ConnectionClass();
+        Statement stmt = conn.getConnection();
+        ResultSet result = null;
+        productCategories = new ArrayList<>();
+
+        try {
+            if(cat_id == "0") {
+                result = stmt.executeQuery("select * from Product_categories");
+            } else {
+                result = stmt.executeQuery("select * from Product_categories where cat_id ="+ cat_id +"");
+
+                if(!result.next()) {
+                    Toast.makeText(getApplicationContext(), "No result found !", Toast.LENGTH_LONG).show();
+                    result = stmt.executeQuery("select * from Product_categories");
                 } else {
                     do {
                         productCategories.
@@ -97,7 +144,7 @@ public class ProductCategoryActivity extends AppCompatActivity {
 
     public void search(String product_category_name) {
 
-        productCategories = getProductCategories(product_category_name);
+        productCategories = getSearchedProductCategories(product_category_name);
 
         productCategoryAdapter = new ProductCategoryAdapter(this, productCategories);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
@@ -117,16 +164,58 @@ public class ProductCategoryActivity extends AppCompatActivity {
         // Header
         getSupportActionBar().setTitle("Product Category");
 
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view_product_categories);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        categories = getCategories();
+        spinnerCategory = (Spinner) findViewById(R.id.spinner_categories);
+        ArrayAdapter< Category > categoryArrayAdapter =
+                new ArrayAdapter < Category > (ProductCategoryActivity.this, android.R.layout.simple_spinner_item, categories);
+        categoryArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerCategory.setAdapter(categoryArrayAdapter);
 
-        productCategories = getProductCategories("all");
+        spinnerCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-        productCategoryAdapter = new ProductCategoryAdapter(this, productCategories);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        recyclerView.setAdapter(productCategoryAdapter);
-        recyclerView.getAdapter().notifyDataSetChanged();
+                Category category = (Category) parent.getSelectedItem();
+                recyclerView = (RecyclerView) findViewById(R.id.recycler_view_product_categories);
+                recyclerView.setHasFixedSize(true);
+                recyclerView.setLayoutManager(new LinearLayoutManager(ProductCategoryActivity.this));
+
+                productCategories = getProductCategories(category.getCategory_id());
+
+                productCategoryAdapter = new ProductCategoryAdapter(ProductCategoryActivity.this, productCategories);
+                recyclerView.setLayoutManager(new GridLayoutManager(ProductCategoryActivity.this, 2));
+                recyclerView.setAdapter(productCategoryAdapter);
+                recyclerView.getAdapter().notifyDataSetChanged();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    public List<Category> getCategories() {
+        ConnectionClass conn = new ConnectionClass();
+        Statement stmt = conn.getConnection();
+        ResultSet result = null;
+        categories = new ArrayList<>();
+        categories.add(new Category(
+                "0",
+                "All Categories", ""));
+        try {
+            result = stmt.executeQuery("select * from Categories");
+            while(result.next()){
+
+                categories.add(new Category(
+                        result.getString("cat_id"),
+                        result.getString("cat_name"), ""));
+            }
+            conn.connectionClose();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return categories;
     }
 
     public void getProducts(View view) {
