@@ -39,14 +39,14 @@
             <TextView
                 android:id="@+id/product_name"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="55dp"
                 android:paddingBottom="5dp"
                 android:textAlignment="center"
                 android:text="Product"
-                android:textSize="24sp"
+                android:textSize="20dp"
                 android:textColor="@color/colorAccent"
                 android:layout_toRightOf="@id/product_image"
-                android:layout_marginTop="20dp"/>
+                android:layout_marginTop="15dp"/>
 
 
 

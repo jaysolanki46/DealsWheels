@@ -37,4 +37,9 @@ public class Category {
         this.category_image = category_image;
         this.category_title = category_title;
     }
+
+    @Override
+    public String toString() {
+        return category_title;
+    }
 }

@@ -6,13 +6,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_margin="5dp"
+    android:layout_gravity="center"
     android:background="@color/colorbackground">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_gravity="center"
-        android:background="@drawable/icon_top_static1">
+        android:background="@drawable/icon_top_static">
     </LinearLayout>
 
     <RelativeLayout
@@ -23,12 +24,11 @@
         android:layout_marginBottom="10dp">
 
         <android.support.v7.widget.RecyclerView
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_centerHorizontal="true"
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"/>
 
     </RelativeLayout>
 </LinearLayout>

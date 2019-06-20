@@ -8,9 +8,19 @@
     tools:context=".MainActivity"
     android:layout_marginTop="10dp">
 
+    <Spinner
+        android:id="@+id/spinner_categories"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/colorcard"
+        android:textColorHint="@color/colorcard"
+        android:textColorHighlight="@color/colorcard"/>
+
     <android.support.v7.widget.RecyclerView
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
         android:layout_centerHorizontal="true"
         android:id="@+id/recycler_view_product_categories"
         android:layout_width="match_parent"

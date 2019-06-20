@@ -1,6 +1,8 @@
 package com.example.jayso.shopnsave;
 
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.speech.RecognizerIntent;
@@ -83,10 +85,6 @@ public class CategoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categories);
         SEARCH_FLAG = true;
-
-        //Header
-        //getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        //getSupportActionBar().setCustomView(R.layout.title_shop_n_save);
         getSupportActionBar().setTitle("Shop N Save");
 
         // get from database

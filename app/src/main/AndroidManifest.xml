@@ -20,6 +20,7 @@
         <activity android:name="com.example.jayso.shopnsave.ProductActivity"></activity>
         <activity android:name="com.example.jayso.shopnsave.ProductDetailActivity"></activity>
         <activity android:name="com.example.jayso.shopnsave.ProductCategoryActivity"></activity>
+        <activity android:name="com.example.jayso.shopnsave.NoInternetActivity"></activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET"/>
