@@ -2,7 +2,6 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorheader"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
@@ -13,8 +12,8 @@
             android:transitionName="product_image"
             android:id="@+id/product_image"
             android:layout_centerHorizontal="true"
-            android:layout_width="250dp"
-            android:layout_height="200dp"
+            android:layout_width="150dp"
+            android:layout_height="130dp"
             android:layout_margin="10dp"
             android:scaleType="fitXY" />
 
@@ -34,8 +33,8 @@
                 android:layout_alignParentTop="true"
                 android:layout_margin="20dp"
                 android:layout_centerHorizontal="true"
-                android:text="Strawberry"
-                android:textColor="@color/colorfont"
+                android:text="Name"
+                android:textColor="@color/headertoolbaar"
                 android:textSize="25dp"
                 />
         </RelativeLayout>
@@ -51,14 +50,14 @@
             <android.support.v7.widget.CardView
                 android:id="@+id/card_pak_n_save"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
+                android:layout_height="80dp"
                 app:cardCornerRadius="10dp"
                 android:layout_margin="5dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/colorcard1"
+                    android:background="@color/headertoolbaar"
                     android:padding="5dp">
 
                     <TextView
@@ -66,7 +65,7 @@
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:text="Pak N Save"
-                        android:textSize="20dp"
+                        android:textSize="16sp"
                         android:textColor="@color/colorfont"
                         android:layout_marginLeft="5dp"/>
 
@@ -75,7 +74,7 @@
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:text="* Including all tax"
-                        android:textSize="15sp"
+                        android:textSize="10sp"
                         android:textColor="@color/colorfont"
                         android:layout_below="@id/txt_pak_n_save"/>
 
@@ -84,7 +83,7 @@
                         android:id="@+id/price_pak_n_save"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:textSize="50dp"
+                        android:textSize="20sp"
                         android:textColor="@color/colorfont"
                         android:layout_below="@id/txt_tax_pak_n_save"/>
 
@@ -103,14 +102,14 @@
             <android.support.v7.widget.CardView
                 android:id="@+id/card_coundown"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
+                android:layout_height="80dp"
                 app:cardCornerRadius="10dp"
                 android:layout_margin="5dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/colorcard1"
+                    android:background="@color/headertoolbaar"
                     android:padding="5dp">
 
                     <TextView
@@ -118,7 +117,7 @@
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:text="Coundown"
-                        android:textSize="20dp"
+                        android:textSize="16sp"
                         android:textColor="@color/colorfont"
                         android:layout_marginLeft="5dp"/>
 
@@ -127,7 +126,7 @@
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:text="* Including all tax"
-                        android:textSize="15sp"
+                        android:textSize="10sp"
                         android:textColor="@color/colorfont"
                         android:layout_below="@id/txt_coundown"/>
 
@@ -136,7 +135,7 @@
                         android:id="@+id/price_coundown"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:textSize="50dp"
+                        android:textSize="20sp"
                         android:textColor="@color/colorfont"
                         android:layout_below="@id/txt_tax_coundown"/>
 
@@ -155,22 +154,22 @@
             <android.support.v7.widget.CardView
                 android:id="@+id/card_new_world"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
+                android:layout_height="80dp"
                 app:cardCornerRadius="10dp"
                 android:layout_margin="5dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/colorcard1"
+                    android:background="@color/headertoolbaar"
                     android:padding="5dp">
 
                     <TextView
                         android:id="@+id/txt_new_world"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:text="New World"
-                        android:textSize="20dp"
+                        android:text="New world"
+                        android:textSize="16sp"
                         android:textColor="@color/colorfont"
                         android:layout_marginLeft="5dp"/>
 
@@ -179,7 +178,7 @@
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:text="* Including all tax"
-                        android:textSize="15sp"
+                        android:textSize="10sp"
                         android:textColor="@color/colorfont"
                         android:layout_below="@id/txt_new_world"/>
 
@@ -188,7 +187,7 @@
                         android:id="@+id/price_new_world"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:textSize="50dp"
+                        android:textSize="20sp"
                         android:textColor="@color/colorfont"
                         android:layout_below="@id/txt_tax_new_world"/>
 
@@ -203,6 +202,7 @@
                 </RelativeLayout>
 
             </android.support.v7.widget.CardView>
+
         </LinearLayout>
     </RelativeLayout>
 </ScrollView>

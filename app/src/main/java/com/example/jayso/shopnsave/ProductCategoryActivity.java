@@ -153,7 +153,7 @@ public class ProductCategoryActivity extends AppCompatActivity {
         SEARCH_FLAG = true;
 
         // Header
-        getSupportActionBar().setTitle("Product Category");
+        getSupportActionBar().setTitle("Shop N Save");
 
         categories = getCategories();
         spinnerCategory = (Spinner) findViewById(R.id.spinner_categories);

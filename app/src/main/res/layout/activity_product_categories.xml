@@ -16,9 +16,16 @@
         android:layout_margin="10dp"
         android:background="@drawable/spinner_background"/>
 
+    <LinearLayout
+        android:layout_width="250dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:background="@drawable/icon_top_static">
+    </LinearLayout>
+
     <android.support.v7.widget.RecyclerView
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_centerHorizontal="true"
         android:id="@+id/recycler_view_product_categories"
         android:layout_width="match_parent"

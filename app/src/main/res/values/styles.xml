@@ -3,7 +3,7 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/headertoolbaar</item>
+        <item name="colorPrimary">@color/colorfont</item>
         <item name="colorPrimaryDark">#000</item>
         <item name="colorAccent">#ffffff</item>
         <item name="android:fontFamily">@font/sansbold</item>
