@@ -93,10 +93,10 @@ public class ProductDetailActivity extends AppCompatActivity {
 
                 shareBody = "Hi, hope you well today ! " +
                         "\nHurry !!!! grab your grocery today," +
-                        "\n\n" + name + " available in "+
-                        "\n Pak N Save : $ " + result.getString("pak_n_save_price") +
-                        "\n Coundown : $ " + result.getString("coundown_price") +
-                        "\n New World : $ " + result.getString("new_world_price");
+                        "\n\n" + name + " available in these stores: "+
+                        "\nPak N Save : $ " + result.getString("pak_n_save_price") +
+                        "\nCountdown : $ " + result.getString("coundown_price") +
+                        "\nNew World : $ " + result.getString("new_world_price");
             }
             conn.connectionClose();
         } catch (SQLException e) {

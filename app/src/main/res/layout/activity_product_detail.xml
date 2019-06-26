@@ -116,7 +116,7 @@
                         android:id="@+id/txt_coundown"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:text="Coundown"
+                        android:text="Countdown"
                         android:textSize="16sp"
                         android:textColor="@color/colorfont"
                         android:layout_marginLeft="5dp"/>
