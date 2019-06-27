@@ -13,7 +13,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ListViewHolder> {
 
@@ -54,43 +56,50 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ListView
             listViewHolder.product_image.setImageResource(R.drawable.icon_no_image_found);
         }
 
-        List<Float> prices = new ArrayList<>();
+        Map<Float, String> prices = new HashMap<>();
 
         if (!product.getProduct_pak_n_save_price().equals("N/A")) {
-            prices.add(Float.valueOf(product.getProduct_pak_n_save_price()));
+            prices.put(Float.valueOf(product.getProduct_pak_n_save_price()), "Pak N Save");
         }
 
         if (!product.getProduct_coundown_price().equals("N/A")) {
-            prices.add(Float.valueOf(product.getProduct_coundown_price()));
+            prices.put(Float.valueOf(product.getProduct_coundown_price()), "Countdown");
         }
 
         if (!product.getProduct_new_world_price().equals("N/A")) {
-            prices.add(Float.valueOf(product.getProduct_new_world_price()));
+            prices.put(Float.valueOf(product.getProduct_new_world_price()), "New World");
         }
 
         if(prices.isEmpty()) {
             listViewHolder.product_max_price.setText("N/A");
             listViewHolder.product_min_price.setText("N/A");
         } else {
-            Float max_price = prices.get(0);
-            Float min_price = prices.get(0);
+            Map.Entry<Float,String>  initialEntry = prices.entrySet().iterator().next();
+            Float max_price = initialEntry.getKey();
+            String max_label = initialEntry.getValue();
+            Float min_price = initialEntry.getKey();
+            String min_label = initialEntry.getValue();
 
-            for(int j=1;j < prices.size();j++){
-                if(prices.get(j) > max_price){
-                    max_price = prices.get(j);
+            for (Map.Entry<Float,String> price : prices.entrySet()) {
+                if(price.getKey() > max_price){
+                    max_price = price.getKey();
+                    max_label = price.getValue();
                 }
             }
 
-            for(int j=1;j < prices.size();j++){
-                if(prices.get(j) < min_price){
-                    min_price = prices.get(j);
+            for (Map.Entry<Float,String> price : prices.entrySet()) {
+                if(price.getKey() < min_price){
+                    min_price = price.getKey();
+                    min_label = price.getValue();
                 }
             }
 
             listViewHolder.product_max_price.setText(String.valueOf(max_price));
+            listViewHolder.product_max_price_label_org.setText("in " + max_label);
             listViewHolder.product_min_price.setText(String.valueOf(min_price));
+            listViewHolder.product_min_price_label_org.setText("in " + min_label);
         }
-        listViewHolder.product_store_count.setText(product.getProduct_store_count() + " Stores");
+        listViewHolder.product_store_count.setText("Available in " + product.getProduct_store_count() + " Stores");
         setAnimation(listViewHolder.itemView, i);
     }
 
@@ -105,7 +114,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ListView
         TextView product_name;
         ImageView product_image;
         TextView product_max_price;
+        TextView product_max_price_label_org;
         TextView product_min_price;
+        TextView product_min_price_label_org;
         TextView product_store_count;
 
         public ListViewHolder(@NonNull View itemView) {
@@ -115,7 +126,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ListView
             product_name = itemView.findViewById(R.id.product_name);
             product_image = itemView.findViewById(R.id.product_image);
             product_max_price = itemView.findViewById(R.id.product_price_max);
+            product_max_price_label_org = itemView.findViewById(R.id.product_price_max_org);
             product_min_price = itemView.findViewById(R.id.product_price_min);
+            product_min_price_label_org = itemView.findViewById(R.id.product_price_min_org);
             product_store_count = itemView.findViewById(R.id.product_store_counter);
         }
     }
