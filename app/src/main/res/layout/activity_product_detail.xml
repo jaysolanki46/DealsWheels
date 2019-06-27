@@ -64,7 +64,7 @@
                         android:id="@+id/txt_pak_n_save"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:text="Pak N Save"
+                        android:text="PAK N SAVE"
                         android:textSize="16sp"
                         android:textColor="@color/colorfont"
                         android:layout_marginLeft="5dp"/>
@@ -116,7 +116,7 @@
                         android:id="@+id/txt_coundown"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:text="Countdown"
+                        android:text="COUNTDOWN"
                         android:textSize="16sp"
                         android:textColor="@color/colorfont"
                         android:layout_marginLeft="5dp"/>
@@ -168,7 +168,7 @@
                         android:id="@+id/txt_new_world"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:text="New world"
+                        android:text="NEW WORLD"
                         android:textSize="16sp"
                         android:textColor="@color/colorfont"
                         android:layout_marginLeft="5dp"/>
